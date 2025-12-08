@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yann Ouahnoun - CV IT Technician</title>
+    <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Saira', sans-serif; line-height: 1.6; color: #333; background: #f4f4f4; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 0; background: #007D8B; color: white; }
+        h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .cv { display: flex; flex-wrap: wrap; gap: 20px; margin: 40px 0; }
+        .sidebar { flex: 1 1 30%; background: #007D8B; color: white; padding: 30px; border-radius: 10px; }
+        .main { flex: 1 1 65%; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .contact { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-top: 40px; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 16px; font-family: inherit; }
+        input[type=submit] { background: #007D8B; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1.1em; }
+        h2 { color: #007D8B; margin-bottom: 20px; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 10px; }
+        @media (max-width: 768px) { .cv { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yann Ouahnoun</h1>
+        <p>IT Technician - Support Technique & Serveurs</p>
+    </header>
+    
+    <div class="container">
+        <div class="cv">
+            <div class="sidebar">
+                <h2>Profil Professionnel</h2>
+                <p>Technicien IT expérimenté spécialisé en support technique, gestion de serveurs et assistance hardware/software. Expertise en administration serveur et escalade vers équipes infrastructure. Polyvalent et orienté client.</p>
+                
+                <h2>Compétences</h2>
+                <ul><li>Support utilisateur & diagnostic</li><li>Gestion serveurs Windows</li><li>Réseaux & téléphonie</li><li>SharePoint & migration OS</li></ul>
+                
+                <h2>Langues</h2>
+                <ul><li>Français: Natif</li><li>Anglais: Expert</li><li>Arabe: Expert</li><li>Espagnol: Expert</li></ul>
+                
+                <p><strong>514.569.8997</strong><br>yann72msn.com<br><a href="https://ca.linkedin.com/in/yannouahnoun" style="color: white;">LinkedIn</a></p>
+            </div>
+            
+            <div class="main">
+                <h2>Expérience</h2>
+                <ul><li><strong>Harris Computer Systems (2015-présent) - Support serveur, formation interne</strong></li><li><strong>Autres postes - Support technique, migration OS, documentation</strong></li></ul>
+                
+                <h2>Formation</h2>
+                <ul><li>Baccalauréat Gestion IT - O.R.T. Casablanca, 1994</li><li>BTS Commerce International - O.R.T., 1996</li><li>MCP Windows 2000 Server - Eurelec, 2003-2004</li></ul>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <h2>Recruteurs - Contact</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="text" name="name" placeholder="Nom recruteur" required>
+                <input type="email" name="email" placeholder="email@entreprise.com" required>
+                <input type="text" name="position" placeholder="Poste proposé">
+                <textarea name="message" rows="5" placeholder="Pourquoi Yann est votre candidat idéal..." required></textarea>
+                <input type="submit" value="Envoyer candidature">
+            </form>
+            <p><em>Inscrivez-vous sur <a href="https://formspree.io">Formspree.io</a> (gratuit) pour activer.</em></p>
+        </div>
+    </div>
+</body>
+</html>
