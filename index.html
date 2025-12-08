@@ -170,4 +170,65 @@
           "<strong>LinkedIn:</strong> <a href="https://ca.linkedin.com/in/yannouahnoun" target="_blank">ca.linkedin.com/in/yannouahnoun</a>", /*[file:125]*/
         experienceTitle: "Professional Experience",
         experience: [
-          "<strong>IT Technician – Lady Davis Institute, Jewish General Hospital</strong><br><em>Montreal, QC | 04/2018 – 08/2025</em><br>Provided technical support to researchers and their teams. Managed system access by creating accounts, email boxes and distribution groups. Secured network shares by assigning permissions and resolving access issues. Configured and troubleshot issues on Windows and macOS workstations. Deployed workstations via an imaging server and performed basic server monitoring.",
+          "<strong>IT Technician – Lady Davis Institute, Jewish General Hospital</strong><br><em>Montreal, QC | 04/2018 – 08/2025</em><br>Provided technical support to researchers and their teams. Managed system access by creating accounts, email boxes and distribution groups. Secured network shares by assigning permissions and resolving access issues. Configured and troubleshot issues on Windows and macOS workstations. Deployed workstations via an imaging server and performed basic server monitoring.", /*[file:125]*/
+          "<strong>Customer Support Team Lead – ISR Transit</strong><br><em>Montreal, QC | 03/2017 – 04/2018</em><br>Managed the support team and coordinated field interventions. Supervised software deployment and updates, ensuring service quality for customers.", /*[file:125]*/
+          "<strong>Field Technician – Dell Canada (Bombardier)</strong><br><em>Dorval, QC | 11/2015 – 03/2016</em><br>Deployed workstations and software via Microsoft System Center Configuration Manager. Installed, configured and replaced IT equipment on Bombardier sites, following internal standards.", /*[file:125]*/
+          "<strong>Office Support & Systems – NorthStar Harris Computer Systems</strong><br><em>Montreal, QC | 09/2011 – 10/2015</em><br>Provided level 2 support to business units across North America. Managed user accounts and permissions via Active Directory and SharePoint. Performed Windows operating system migrations and troubleshooting. Wrote technical and training documentation for users and technicians." /*[file:125]*/
+        ],
+        educationTitle: "Education",
+        education: [
+          "Internal Training – Harris Computer Systems | 2015.", /*[file:125]*/
+          "MCP on Windows 2000 Server & Professional – Eurelec | 2003–2004.", /*[file:125]*/
+          "BTS in International Business – École O.R.T. | 1996.", /*[file:125]*/
+          "French Baccalaureate in IT Management – École O.R.T., Casablanca | 1994." /*[file:125]*/
+        ],
+        formTitle: "Recruiters - Contact",
+        formIntro: "Use this form to contact me regarding a position or opportunity.",
+        formName: "Recruiter name",
+        formEmail: "email@company.com",
+        formPosition: "Position (optional)",
+        formMessage: "Describe the role, context and your expectations...",
+        formSubmit: "Send message"
+      }
+    };
+
+    function renderLang(lang) {
+      const d = data[lang];
+      document.getElementById("name").innerText = d.name;
+      document.getElementById("title").innerText = d.title;
+      document.getElementById("profile-title").innerText = d.profileTitle;
+      document.getElementById("profile-text").innerText = d.profileText;
+      document.getElementById("skills-title").innerText = d.skillsTitle;
+      document.getElementById("skills-list").innerHTML = d.skills.map(s => `<li>${s}</li>`).join("");
+      document.getElementById("languages-title").innerText = d.languagesTitle;
+      document.getElementById("languages-list").innerHTML = d.languages.map(l => `<li>${l}</li>`).join("");
+      document.getElementById("contact-title").innerText = d.contactTitle;
+      document.getElementById("contact-text").innerHTML = d.contactHtml;
+      document.getElementById("experience-title").innerText = d.experienceTitle;
+      document.getElementById("experience-list").innerHTML = d.experience.map(e => `<li>${e}</li>`).join("");
+      document.getElementById("education-title").innerText = d.educationTitle;
+      document.getElementById("education-list").innerHTML = d.education.map(ed => `<li>${ed}</li>`).join("");
+      document.getElementById("form-title").innerText = d.formTitle;
+      document.getElementById("form-intro").innerText = d.formIntro;
+      document.getElementById("form-name").placeholder = d.formName;
+      document.getElementById("form-email").placeholder = d.formEmail;
+      document.getElementById("form-position").placeholder = d.formPosition;
+      document.getElementById("form-message").placeholder = d.formMessage;
+      document.getElementById("form-submit").value = d.formSubmit;
+
+      document.getElementById("btn-fr").classList.toggle("active", lang === "fr");
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+    }
+
+    function setLang(lang) {
+      renderLang(lang);
+      localStorage.setItem("cvLang", lang);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem("cvLang") || "fr";
+      renderLang(saved);
+    });
+    </script>
+</body>
+</html>
