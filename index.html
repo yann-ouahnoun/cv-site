@@ -16,85 +16,120 @@
         .main { flex: 1 1 65%; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
         .contact { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-top: 40px; }
         input, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 16px; font-family: inherit; }
-        input[type=submit] { background: #007D8B; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1.1em; }
+        input[type=submit] { background: #007D8B; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1.1em; padding: 12px 20px; }
+        input[type=submit]:hover { background: #005f6b; }
         h2 { color: #007D8B; margin-bottom: 20px; }
         ul { list-style: none; padding-left: 0; }
         li { margin-bottom: 10px; }
-        @media (max-width: 768px) { .cv { flex-direction: column; } }
+        a { color: inherit; }
+        @media (max-width: 768px) { .cv { flex-direction: column; } .sidebar, .main { flex: 1 1 100%; } }
     </style>
 </head>
 <body>
     <header>
         <h1>Yann Ouahnoun</h1>
-        <p>IT Technician - Support Technique & Serveurs</p>
+        <p>Technicien Informatique - IT Technician</p>
     </header>
-    
+
     <div class="container">
         <div class="cv">
             <div class="sidebar">
                 <h2>Profil Professionnel</h2>
-                <p>Technicien IT expérimenté spécialisé en support technique, gestion de serveurs et assistance hardware/software. Expertise en administration serveur et escalade vers équipes infrastructure. Polyvalent et orienté client.</p>
-                
+                <p>
+                    Technicien informatique expérimenté, spécialisé en support technique, gestion de serveurs et assistance
+                    matérielle et logicielle. Mon expertise inclut l’assistance en administration de serveurs et l’escalade
+                    aux équipes d’infrastructure. Polyvalent et axé sur le service à la clientèle, je suis capable de
+                    résoudre des pannes complexes, de gérer des tâches administratives et de former des utilisateurs et
+                    techniciens.
+                </p>
+
                 <h2>Compétences</h2>
-                <ul><li>Support utilisateur & diagnostic</li><li>Gestion serveurs Windows</li><li>Réseaux & téléphonie</li><li>SharePoint & migration OS</li></ul>
-                
+                <ul>
+                    <li><strong>Support technique & maintenance :</strong> diagnostic, résolution de pannes, dépannage matériel, maintenance des infrastructures, migrations et mises à niveau de systèmes, création et déploiement d’images système.</li>
+                    <li><strong>Systèmes d’exploitation :</strong> Windows XP à 11, macOS, iOS, Android.</li>
+                    <li><strong>Administration & réseau :</strong> configuration de base de VM (VMware, Hyper‑V), gestion de partages réseau et permissions d’accès, configuration matérielle et réseau, résolution de pannes DHCP/DNS.</li>
+                    <li><strong>Service à la clientèle & formation :</strong> assistance par téléphone et à distance, formation d’utilisateurs et de techniciens, rédaction de documentation technique.</li>
+                    <li><strong>Logiciels & outils :</strong> Microsoft Office (Word, Excel, Outlook), Microsoft Defender, Active Directory, SharePoint, SCCM, outils Cisco.</li>
+                </ul>
+
                 <h2>Langues</h2>
-                <ul><li>Français: Natif</li><li>Anglais: Expert</li><li>Arabe: Expert</li><li>Espagnol: Expert</li></ul>
-                
-                <p><strong>514.569.8997</strong><br>yann72msn.com<br><a href="https://ca.linkedin.com/in/yannouahnoun" style="color: white;">LinkedIn</a></p>
+                <ul>
+                    <li>Français : langue maternelle.</li>
+                    <li>Anglais : expert (écrit et parlé).</li>
+                    <li>Espagnol : expert (écrit et parlé).</li>
+                    <li>Arabe : expert (parlé).</li>
+                </ul>
+
+                <h2>Contact</h2>
+                <p>
+                    <strong>Téléphone :</strong> 514.569.8997<br>
+                    <strong>Email :</strong> <a href="mailto:yann_72@msn.com">yann_72@msn.com</a><br>
+                    <strong>LinkedIn :</strong> <a href="https://ca.linkedin.com/in/yannouahnoun" target="_blank">ca.linkedin.com/in/yannouahnoun</a>
+                </p>
             </div>
-            
-           <div class="main">
-    <h2>Parcours professionnel</h2>
-    <ul>
-        <li>
-            <strong>Technicien Informatique – Institut Lady Davis, Hôpital Général Juif</strong><br>
-            <em>Montréal, QC | 04/2018 – 08/2025</em><br>
-            Assuré le soutien technique aux chercheurs et à leurs équipes : postes Windows et macOS, périphériques, imprimantes et équipements scientifiques spécialisés.[file:84] Géré l’accès aux systèmes en créant des comptes, boîtes courriel et groupes de distribution, en appliquant les bonnes pratiques de sécurité.[file:84] Sécurisé les partages réseau en assignant des permissions adaptées et en résolvant les problèmes d’accès (droits, chemins, mapping lecteurs).[file:84] Configuré et résolu les pannes sur les postes de travail Windows et macOS, incluant mises à jour, drivers et logiciels métier.[file:84] Déployé des stations de travail via un serveur d’imagerie et effectué la surveillance de base des serveurs utilisés par le département.[file:84]
-        </li>
-        <li>
-            <strong>Chef d’Équipe Support Clientèle – ISR Transit</strong><br>
-            <em>Montréal, QC | 03/2017 – 04/2018</em><br>
-            Géré l’équipe de soutien et coordonné les interventions sur le terrain pour les clients de l’entreprise.[file:84] Planifié et suivi les tâches quotidiennes des techniciens, en veillant au respect des priorités et des délais.[file:84] Supervisé le déploiement et les mises à jour de logiciels sur les postes et équipements clients, en lien avec les besoins opérationnels.[file:84]
-        </li>
-        <li>
-            <strong>Technicien de Terrain – Dell Canada (mandat Bombardier)</strong><br>
-            <em>Dorval, QC | 11/2015 – 03/2016</em><br>
-            Déployé des stations de travail et des logiciels via Microsoft System Center Configuration Manager (SCCM), dans un environnement industriel exigeant.[file:84] Assuré l’installation, la configuration et le remplacement d’équipements informatiques sur les sites Bombardier, en respectant les procédures établies.[file:84]
-        </li>
-        <li>
-            <strong>Soutien Bureautique & Systèmes – NorthStar Harris Computer Systems</strong><br>
-            <em>Montréal, QC | 09/2011 – 10/2015</em><br>
-            Fourni un soutien de niveau 2 aux unités d’affaires en Amérique du Nord sur les applications internes et l’environnement bureautique.[file:84] Géré les comptes d’utilisateurs et les permissions via Active Directory et SharePoint (création, modification, désactivation).[file:84] Effectué la migration de systèmes d’exploitation Windows et la résolution de pannes liées à ces changements.[file:84] Rédigé la documentation technique et les guides de formation destinés aux utilisateurs et aux techniciens.[file:84]
-        </li>
-        <!-- Tu peux ajouter ici d’anciens postes si tu en as dans ton CV avant 2011 -->
-    </ul>
 
-    <h2>Compétences techniques</h2>
-    <ul>
-        <li><strong>Support Technique & Maintenance :</strong> Diagnostic et résolution de pannes, dépannage matériel, maintenance des infrastructures, migrations et mises à niveau de systèmes, création et déploiement d’images système.[file:84]</li>
-        <li><strong>Systèmes d’exploitation :</strong> Windows XP à 11, macOS, iOS, Android.[file:84]</li>
-        <li><strong>Administration & Réseau :</strong> Configuration de base de machines virtuelles (VMware, Hyper-V), gestion de partages réseau et permissions d’accès, configuration matérielle et réseau, résolution de pannes DHCP/DNS.[file:84]</li>
-        <li><strong>Service à la clientèle & Formation :</strong> Assistance par téléphone et à distance, formation d’utilisateurs et de techniciens, rédaction de documentation technique.[file:84]</li>
-        <li><strong>Logiciels & outils :</strong> Microsoft Office (Word, Excel, Outlook), Microsoft Defender, Active Directory, SharePoint, Microsoft System Center Configuration Manager, Cisco.[file:84]</li>
-    </ul>
+            <div class="main">
+                <h2>Parcours professionnel</h2>
+                <ul>
+                    <li>
+                        <strong>Technicien Informatique – Institut Lady Davis, Hôpital Général Juif</strong><br>
+                        <em>Montréal, QC | 04/2018 – 08/2025</em><br>
+                        Assurer le soutien technique aux chercheurs et à leurs équipes (postes Windows et macOS,
+                        imprimantes, équipements scientifiques). Gérer l’accès aux systèmes (comptes, boîtes courriel,
+                        groupes de distribution) et appliquer les bonnes pratiques de sécurité. Administrer et sécuriser
+                        les partages réseau (permissions, résolution de problèmes d’accès, mapping de lecteurs). Configurer,
+                        déployer et dépanner les postes de travail Windows et macOS (mises à jour, pilotes, logiciels
+                        métier). Déployer des stations de travail via un serveur d’imagerie et participer à la surveillance
+                        de base des serveurs du département.
+                    </li>
+                    <li>
+                        <strong>Chef d’Équipe Support Clientèle – ISR Transit</strong><br>
+                        <em>Montréal, QC | 03/2017 – 04/2018</em><br>
+                        Encadrer l’équipe de support et coordonner les interventions sur le terrain pour les clients.
+                        Planifier et suivre les tâches quotidiennes des techniciens, en priorisant les demandes critiques.
+                        Assurer la satisfaction client en suivant les incidents jusqu’à leur résolution et en communiquant
+                        les états d’avancement.
+                    </li>
+                    <li>
+                        <strong>Technicien de Terrain – Dell Canada (mandat Bombardier)</strong><br>
+                        <em>Dorval, QC | 11/2015 – 03/2016</em><br>
+                        Déployer des postes de travail et des logiciels via Microsoft System Center Configuration Manager
+                        (SCCM). Installer, configurer et remplacer des équipements informatiques sur les sites de production
+                        Bombardier, en respectant les procédures internes. Documenter les interventions et remonter les
+                        problèmes récurrents aux équipes d’ingénierie.
+                    </li>
+                    <li>
+                        <strong>Soutien Bureautique & Systèmes – NorthStar Harris Computer Systems</strong><br>
+                        <em>Montréal, QC | 09/2011 – 10/2015</em><br>
+                        Assurer un soutien de niveau 2 aux unités d’affaires en Amérique du Nord sur les applications
+                        internes et l’environnement bureautique. Gérer les comptes utilisateurs et les permissions dans
+                        Active Directory et SharePoint (création, modification, désactivation). Réaliser des migrations de
+                        systèmes d’exploitation Windows et résoudre les incidents associés. Rédiger des guides utilisateurs,
+                        procédures techniques et documents de formation pour les techniciens et utilisateurs finaux.
+                    </li>
+                </ul>
 
-    <h2>Langues</h2>
-    <ul>
-        <li><strong>Français :</strong> langue maternelle.[file:84]</li>
-        <li><strong>Anglais :</strong> expert (écrit et parlé).[file:84]</li>
-        <li><strong>Espagnol :</strong> expert (écrit et parlé).[file:84]</li>
-        <li><strong>Arabe :</strong> expert (parlé).[file:84]</li>
-    </ul>
+                <h2>Formation</h2>
+                <ul>
+                    <li>Formation interne – Harris Computer Systems | 2015.</li>
+                    <li>MCP on Windows 2000 Server &amp; Professional – Eurelec | 2003–2004.</li>
+                    <li>BTS Commerce International – École O.R.T. | 1996.</li>
+                    <li>Baccalauréat français en Gestion Informatique – École O.R.T., Casablanca | 1994.</li>
+                </ul>
+            </div>
+        </div>
 
-    <h2>Formation</h2>
-    <ul>
-        <li><strong>Formation interne – Harris Computer Systems</strong> | 2015.[file:84]</li>
-        <li><strong>MCP on Windows 2000 Server & Professional</strong> – Eurelec | 2003–2004.[file:84]</li>
-        <li><strong>BTS Commerce International</strong> – École O.R.T. | 1996.[file:84]</li>
-        <li><strong>Baccalauréat français en Gestion Informatique</strong> – École O.R.T., Casablanca | 1994.[file:84]</li>
-    </ul>
-</div>
+        <div class="contact">
+            <h2>Recruteurs - Contact</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <input type="text" name="name" placeholder="Nom du recruteur" required>
+                <input type="email" name="email" placeholder="email@entreprise.com" required>
+                <input type="text" name="position" placeholder="Poste proposé">
+                <textarea name="message" rows="5" placeholder="Expliquez le poste et vos attentes..." required></textarea>
+                <input type="submit" value="Envoyer le message">
+            </form>
+            <p><em>Pour activer ce formulaire, créez un compte gratuit sur <a href="https://formspree.io" target="_blank">Formspree.io</a> puis remplacez <code>YOUR_FORM_ID</code> par votre identifiant de formulaire.</em></p>
+        </div>
     </div>
 </body>
 </html>
