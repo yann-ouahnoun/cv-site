@@ -36,20 +36,32 @@
             padding: 25px;
             border-radius: 10px;
         }
+        /* cartes sur beige clair */
         .main {
             flex: 1 1 65%;
             padding: 25px;
-            background: linear-gradient(145deg, #ffffff, #fdf3e7);
+            background: #f5e9d7;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         .contact {
-            background: linear-gradient(145deg, #ffffff, #f0f9ff);
+            background: #f5e9d7;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             margin-top: 25px;
         }
+        /* garantir le beige à l’intérieur des cartes */
+        .main ul,
+        .main li,
+        .main p,
+        .main h2,
+        .contact form,
+        .contact p,
+        .contact h2 {
+            background-color: #f5e9d7;
+        }
+
         input, textarea {
             width: 100%; padding: 10px; border: 1px solid #ccc;
             border-radius: 4px; margin-bottom: 14px; font-family: inherit; font-size: 0.95em;
