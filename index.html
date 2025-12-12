@@ -36,30 +36,46 @@
             padding: 25px;
             border-radius: 10px;
         }
-        /* cartes sur beige clair */
+
+        /* motif bois clair en CSS pur pour les cartes */
+        .wood-light {
+            position: relative;
+            background-color: #f3e2c4;
+            background-image:
+                linear-gradient(90deg,
+                    rgba(255,255,255,0.15) 0,
+                    rgba(255,255,255,0.15) 3%,
+                    transparent 3%,
+                    transparent 7%,
+                    rgba(0,0,0,0.04) 7%,
+                    rgba(0,0,0,0.04) 8%,
+                    transparent 8%,
+                    transparent 12%),
+                linear-gradient(180deg,
+                    rgba(255,255,255,0.25) 0,
+                    rgba(255,255,255,0.25) 2%,
+                    transparent 2%);
+            background-size: 120px 100%, 100% 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+
         .main {
             flex: 1 1 65%;
             padding: 25px;
-            background: #f5e9d7;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         .contact {
-            background: #f5e9d7;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             margin-top: 25px;
+            padding: 25px;
         }
-        /* garantir le beige à l’intérieur des cartes */
-        .main ul,
-        .main li,
-        .main p,
-        .main h2,
-        .contact form,
-        .contact p,
-        .contact h2 {
-            background-color: #f5e9d7;
+
+        /* garantir le fond bois clair à l’intérieur */
+        .wood-light h2,
+        .wood-light ul,
+        .wood-light li,
+        .wood-light p,
+        .wood-light form {
+            background: transparent;
         }
 
         input, textarea {
@@ -145,7 +161,7 @@
                 <p id="contact-text"></p>
             </div>
 
-            <div class="main festive-card">
+            <div class="main wood-light festive-card">
                 <h2 id="experience-title"></h2>
                 <ul id="experience-list"></ul>
 
@@ -154,7 +170,7 @@
             </div>
         </div>
 
-        <div class="contact festive-card">
+        <div class="contact wood-light festive-card">
             <h2 id="form-title"></h2>
             <p id="form-intro"></p>
             <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
