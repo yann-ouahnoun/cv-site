@@ -1,1086 +1,858 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yann Ouahnoun | Technicien Informatique / IT Technician</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --teal:#007d8b;
-      --teal-dark:#005f6b;
-      --teal-deep:#083b44;
-      --sand:#f4ede3;
-      --paper:#fffdf9;
-      --line:#e7dfd4;
-      --text:#1d1d1f;
-      --muted:#5f6368;
-      --ok:#e7f6ec;
-      --warn:#fff4df;
-      --bad:#fdecec;
-      --info:#e8f2ff;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
-      --radius:18px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,sans-serif;
-      color:var(--text);
-      background:linear-gradient(180deg,#f2efe9 0%,#eee8de 100%);
-    }
-
-    a{color:inherit;text-decoration:none}
-    button,input,textarea,select{font:inherit}
-
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      background:rgba(8,59,68,.94);
-      backdrop-filter: blur(10px);
-      color:#fff;
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-    .topbar-inner{
-      max-width:1200px; margin:0 auto; padding:14px 20px;
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      font-family:"Instrument Serif",serif; font-size:28px;
-    }
-    .brand-badge{
-      width:38px; height:38px; border-radius:12px;
-      display:grid; place-items:center;
-      background:rgba(255,255,255,.12);
-      font-size:20px;
-    }
-    .nav-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .pill-switch{
-      display:inline-flex; padding:4px; border-radius:999px;
-      background:rgba(255,255,255,.10);
-    }
-    .pill-switch button{
-      border:none; background:transparent; color:#d7e8eb;
-      padding:8px 14px; border-radius:999px; cursor:pointer; font-weight:600;
-    }
-    .pill-switch button.active{background:#fff;color:var(--teal)}
-    .ghost-btn, .solid-btn{
-      border:none; cursor:pointer; padding:10px 14px; border-radius:12px; font-weight:600;
-      display:inline-flex; align-items:center; justify-content:center; text-align:center;
-      transition: all 0.2s ease;
-    }
-    .ghost-btn{background:rgba(255,255,255,.08); color:#fff}
-    .ghost-btn:hover{background:rgba(255,255,255,.16)}
-    .solid-btn{background:#fff; color:var(--teal)}
-    .solid-btn:hover{background:#f4ede3; transform:translateY(-1px)}
-
-    .hero{
-      background:
-        radial-gradient(circle at top right, rgba(255,255,255,.18), transparent 30%),
-        linear-gradient(135deg,var(--teal-deep) 0%, var(--teal) 60%, #14a9ba 100%);
-      color:#fff;
-      padding:72px 20px 48px;
-    }
-    .hero-inner{max-width:1200px; margin:0 auto}
-    .eyebrow{
-      display:inline-block; margin-bottom:14px;
-      font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700;
-      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.16);
-      padding:8px 12px; border-radius:999px;
-    }
-    h1{
-      margin:0 0 10px;
-      font-family:"Instrument Serif",serif;
-      font-size:clamp(44px,7vw,76px);
-      font-weight:400; line-height:1;
-    }
-    .hero-subtitle{
-      max-width:860px; margin:0 0 22px;
-      font-size:18px; line-height:1.6; color:#e7f5f7;
-    }
-    .chip-row{
-      display:flex; flex-wrap:wrap; gap:10px; margin:20px 0 28px;
-    }
-    .chip{
-      padding:9px 14px; border-radius:999px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.16);
-      font-size:14px; font-weight:600;
-    }
-    .cta-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
-
-    .stats{
-      max-width:1200px; margin:-24px auto 24px; padding:0 20px;
-      display:grid; grid-template-columns:repeat(6,1fr); gap:12px;
-    }
-    .stat{
-      background:var(--paper);
-      border:1px solid var(--line);
-      border-radius:16px; box-shadow:var(--shadow);
-      padding:18px 14px; text-align:center;
-    }
-    .stat-num{
-      font-family:"Instrument Serif",serif;
-      font-size:34px; color:var(--teal); line-height:1;
-    }
-    .stat-label{
-      margin-top:6px; color:var(--muted); font-size:12px; font-weight:700;
-      text-transform:uppercase; letter-spacing:.05em;
-    }
-
-    .page-tabs{
-      max-width:1200px; margin:0 auto; padding:0 20px 18px;
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .page-tabs button{
-      border:none; cursor:pointer; padding:11px 16px; border-radius:12px;
-      background:#fff; color:var(--muted); font-weight:700; box-shadow:var(--shadow);
-    }
-    .page-tabs button.active{background:var(--teal); color:#fff}
-
-    .layout{
-      max-width:1200px; margin:0 auto; padding:0 20px 48px;
-      display:grid; grid-template-columns:320px 1fr; gap:22px;
-    }
-
-    .sidebar, .card{
-      background:var(--paper); border:1px solid var(--line);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-    }
-
-    .sidebar{
-      overflow:hidden; position:sticky; top:82px; align-self:start;
-      background:linear-gradient(180deg,var(--teal) 0%, var(--teal-dark) 100%);
-      color:#fff;
-    }
-    .sidebar-head{padding:24px}
-    .avatar{
-      width:76px; height:76px; border-radius:50%;
-      display:grid; place-items:center;
-      background:rgba(255,255,255,.18); border:3px solid rgba(255,255,255,.22);
-      font-family:"Instrument Serif",serif; font-size:28px;
-      margin-bottom:12px;
-    }
-    .sidebar-name{
-      font-family:"Instrument Serif",serif; font-size:34px; line-height:1.05;
-      margin:0 0 6px;
-    }
-    .sidebar-role{
-      font-size:12px; text-transform:uppercase; letter-spacing:.12em; opacity:.8; font-weight:700;
-    }
-    .sidebar-section{
-      padding:18px 24px; border-top:1px solid rgba(255,255,255,.12);
-    }
-    .sidebar-section h3{
-      margin:0 0 12px; font-size:12px; text-transform:uppercase;
-      letter-spacing:.12em; opacity:.72;
-    }
-    .tag-list{display:flex; flex-wrap:wrap; gap:8px}
-    .tag{
-      padding:7px 10px; border-radius:999px;
-      background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.14);
-      font-size:12px; font-weight:600;
-    }
-    .plain-list{list-style:none; padding:0; margin:0}
-    .plain-list li{margin:8px 0; font-size:14px; line-height:1.5}
-    .sidebar-link{
-      display:block; margin:18px 24px 24px; text-align:center;
-      background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.18);
-      padding:12px 14px; border-radius:12px; font-weight:700;
-    }
-
-    .content{display:flex; flex-direction:column; gap:18px}
-    .card-head{
-      padding:18px 22px; border-bottom:1px solid var(--line);
-      display:flex; align-items:center; gap:12px;
-    }
-    .card-icon{
-      width:38px; height:38px; border-radius:12px;
-      display:grid; place-items:center;
-      background:var(--sand); color:var(--teal); font-size:18px;
-    }
-    .card-title{
-      font-family:"Instrument Serif",serif; font-size:30px; color:var(--teal);
-      margin:0;
-    }
-    .card-body{padding:22px}
-    .lead{
-      margin:0; color:var(--muted); line-height:1.8; font-size:15px;
-    }
-
-    .achievement-grid{
-      display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
-    }
-    .achievement{
-      background:#fbf8f3; border:1px solid var(--line); border-radius:14px;
-      padding:16px;
-    }
-    .achievement strong{
-      display:block; font-family:"Instrument Serif",serif;
-      font-size:30px; color:var(--teal); font-weight:400;
-    }
-    .achievement span{display:block; margin-top:4px; color:var(--muted); font-size:14px; line-height:1.5}
-
-    .job{
-      padding:18px 0; border-bottom:1px solid var(--line);
-    }
-    .job:last-child{border-bottom:none; padding-bottom:0}
-    .job-top{
-      display:flex; justify-content:space-between; gap:12px; align-items:flex-start;
-      margin-bottom:8px;
-    }
-    .job-company{font-size:17px; font-weight:700}
-    .job-title{color:var(--teal); font-weight:700; margin-top:2px}
-    .job-period{
-      white-space:nowrap; font-size:12px; font-weight:700; color:var(--muted);
-      background:var(--sand); border-radius:999px; padding:7px 10px;
-    }
-    .job ul{
-      margin:10px 0 0 18px; color:var(--muted); line-height:1.7;
-    }
-    .job li{margin:4px 0}
-
-    .edu-list, .contact-list{margin:0; padding-left:18px; color:var(--muted); line-height:1.8}
-    .contact-form{
-      display:grid; grid-template-columns:1fr 1fr; gap:12px;
-    }
-    .field{display:flex; flex-direction:column; gap:6px}
-    .field.full{grid-column:1 / -1}
-    .field label{font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
-    .field input, .field textarea{
-      width:100%; padding:12px 14px; border-radius:12px;
-      border:1px solid #d8d3ca; background:#fff;
-    }
-    .field textarea{min-height:120px; resize:vertical}
-    .submit-btn{
-      border:none; cursor:pointer; padding:13px 18px; border-radius:12px;
-      background:var(--teal); color:#fff; font-weight:700;
-    }
-
-    .tracker-panel{display:none}
-    .tracker-lock{
-      display:grid; gap:12px; max-width:420px;
-    }
-    .tracker-lock input{
-      padding:12px 14px; border-radius:12px; border:1px solid #d8d3ca;
-    }
-    .tracker-app{display:none}
-    .tracker-grid{
-      display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:12px;
-    }
-    .tracker-grid-2{
-      display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;
-    }
-    .tracker-grid input, .tracker-grid select, .tracker-grid-2 textarea{
-      width:100%; padding:12px 14px; border-radius:12px; border:1px solid #d8d3ca; background:#fff;
-    }
-    .tracker-actions{display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 18px}
-    .secondary-btn{
-      border:1px solid var(--teal); background:#fff; color:var(--teal);
-      cursor:pointer; padding:12px 16px; border-radius:12px; font-weight:700;
-    }
-
-    .table-wrap{overflow:auto}
-    table{width:100%; border-collapse:collapse; min-width:980px}
-    th, td{padding:12px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
-    th{
-      background:#f5fbfb; color:var(--teal); font-size:12px;
-      text-transform:uppercase; letter-spacing:.05em;
-    }
-    td{font-size:14px; color:var(--muted)}
-    .status{
-      display:inline-block; padding:7px 10px; border-radius:999px; font-size:12px; font-weight:700;
-    }
-    .s-open{background:var(--info); color:#1b57b8}
-    .s-follow{background:var(--warn); color:#9b5a00}
-    .s-interview{background:var(--ok); color:#1d7a3a}
-    .s-wait{background:#f1effc; color:#5d43b6}
-    .s-reject{background:var(--bad); color:#b32b2b}
-    .s-offer{background:#e7f9f1; color:#137a55}
-
-    .row-btn{
-      border:none; cursor:pointer; padding:8px 10px; border-radius:10px; font-weight:700;
-      margin-right:6px;
-    }
-    .edit-btn{background:#fff6d6; color:#9b6500}
-    .delete-btn{background:#fdecec; color:#b32b2b}
-
-    .footer{
-      padding:24px 20px 40px; text-align:center; color:var(--muted); font-size:14px;
-    }
-
-    @media (max-width: 1024px){
-      .stats{grid-template-columns:repeat(3,1fr)}
-      .layout{grid-template-columns:1fr}
-      .sidebar{position:static}
-      .achievement-grid{grid-template-columns:repeat(2,1fr)}
-      .tracker-grid{grid-template-columns:repeat(2,1fr)}
-      .contact-form{grid-template-columns:1fr}
-    }
-    @media (max-width: 640px){
-      h1{font-size:42px}
-      .stats{grid-template-columns:repeat(2,1fr)}
-      .achievement-grid{grid-template-columns:1fr}
-      .tracker-grid, .tracker-grid-2{grid-template-columns:1fr}
-      .job-top{flex-direction:column}
-      .job-period{white-space:normal}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yann Ouahnoun | Technicien TI</title>
+<style>
+:root{--teal:#007d8b;--dark:#073b44;--paper:#fffdf9;--sand:#f4ede3;--text:#202124;--muted:#60656b;--line:#e5ddd2;--shadow:0 10px 30px rgba(0,0,0,.08)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:linear-gradient(#f2efe9,#eee8de);line-height:1.6}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(7,59,68,.96);color:#fff}
+.topbar-inner{max-width:1180px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-size:24px;font-weight:700}
+.nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.switch{display:flex;background:rgba(255,255,255,.12);border-radius:999px;padding:3px}
+.switch button{border:0;background:transparent;color:#fff;padding:7px 12px;border-radius:999px;cursor:pointer}
+.switch button.active{background:#fff;color:var(--teal)}
+.nav button,.btn{border:0;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}
+.nav .secondary{background:rgba(255,255,255,.12);color:#fff}
+.nav .primary{background:#fff;color:var(--teal)}
+.hero{background:linear-gradient(135deg,var(--dark),var(--teal));color:#fff;padding:64px 20px 48px}
+.hero-inner{max-width:1180px;margin:auto}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.hero h1{font-family:Georgia,serif;font-size:clamp(44px,7vw,76px);font-weight:400;line-height:1;margin:12px 0}
+.hero p{max-width:820px;font-size:18px;color:#e4f4f5}
+.chips,.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.chip{padding:8px 12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);border-radius:999px;font-size:13px;font-weight:700}
+.btn-light{background:#fff;color:var(--teal)}
+.btn-outline{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.stats{max-width:1180px;margin:-22px auto 22px;padding:0 20px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.stat,.card,.sidebar{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.stat{text-align:center;padding:16px 10px}
+.stat strong{display:block;color:var(--teal);font-family:Georgia,serif;font-size:30px}
+.stat span{font-size:12px;color:var(--muted);font-weight:700}
+.tabs{max-width:1180px;margin:auto;padding:0 20px 18px;display:flex;gap:8px}
+.tabs button{border:0;border-radius:10px;padding:10px 14px;background:#fff;color:var(--muted);font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+.tabs button.active{background:var(--teal);color:#fff}
+.layout{max-width:1180px;margin:auto;padding:0 20px 48px;display:grid;grid-template-columns:300px 1fr;gap:22px}
+.sidebar{position:sticky;top:78px;align-self:start;overflow:hidden;background:linear-gradient(var(--teal),#005f6b);color:#fff}
+.side-section{padding:22px;border-bottom:1px solid rgba(255,255,255,.15)}
+.avatar{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.18);font-family:Georgia,serif;font-size:25px}
+.side-name{font-family:Georgia,serif;font-size:28px;margin-top:12px}
+.side-role{font-size:12px;text-transform:uppercase;letter-spacing:.1em;opacity:.8}
+.side-title{font-size:11px;text-transform:uppercase;letter-spacing:.1em;opacity:.75;margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{padding:6px 9px;background:rgba(255,255,255,.13);border-radius:999px;font-size:12px}
+.side-list{list-style:none;margin:0;padding:0;font-size:13px}
+.side-list li{margin:7px 0}
+.private-link{display:block;margin:18px 22px 22px;text-align:center;padding:11px;border-radius:10px;background:rgba(255,255,255,.13);font-weight:700}
+.content{display:flex;flex-direction:column;gap:18px}
+.card{overflow:hidden}
+.card-head{display:flex;gap:10px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
+.icon{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:var(--sand)}
+h2{font-family:Georgia,serif;color:var(--teal);margin:0;font-size:28px}
+.card-body{padding:22px}
+.lead{color:var(--muted);font-size:15px;line-height:1.8;margin:0}
+.achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.achievement{padding:15px;border:1px solid var(--line);border-radius:12px;background:#fbf8f3}
+.achievement strong{display:block;color:var(--teal);font-family:Georgia,serif;font-size:28px}
+.achievement span{font-size:13px;color:var(--muted)}
+.job{padding:17px 0;border-bottom:1px solid var(--line)}
+.job:last-child{border:0;padding-bottom:0}
+.job-top{display:flex;justify-content:space-between;gap:12px}
+.company{font-weight:700;font-size:16px}
+.role{color:var(--teal);font-weight:700}
+.period{font-size:12px;background:var(--sand);padding:6px 10px;border-radius:999px;color:var(--muted);white-space:nowrap}
+.job ul{color:var(--muted);margin:10px 0 0 18px}
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:5px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase}
+.field input,.field textarea,.tracker input,.tracker textarea,.tracker select{padding:11px;border:1px solid #d5cec4;border-radius:9px;background:#fff}
+.field textarea{min-height:110px}
+.submit{background:var(--teal);color:#fff;border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer}
+.tracker-page{display:none}
+.lock{display:grid;gap:10px;max-width:400px}
+.tracker-app{display:none}
+.tracker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.tracker-grid.two{grid-template-columns:1fr 1fr}
+.tracker-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.outline{background:#fff;color:var(--teal);border:1px solid var(--teal);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:13px}
+th{color:var(--teal);background:#f4fbfb;text-transform:uppercase;font-size:11px}
+.status{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:700}
+.edit{background:#fff6d6;color:#9b6500;border:0;border-radius:7px;padding:6px;cursor:pointer}
+.delete{background:#fdecec;color:#b32b2b;border:0;border-radius:7px;padding:6px;cursor:pointer}
+.footer{text-align:center;color:var(--muted);padding:24px}
+@media(max-width:1000px){
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .achievement-grid{grid-template-columns:repeat(2,1fr)}
+  .tracker-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .topbar-inner{align-items:flex-start;flex-direction:column}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .achievement-grid,.contact-form,.tracker-grid,.tracker-grid.two{grid-template-columns:1fr}
+  .job-top{flex-direction:column}
+  .period{white-space:normal}
+}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-badge">Y</div>
-        <span>Yann Ouahnoun</span>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Yann Ouahnoun</div>
+    <div class="nav">
+      <div class="switch">
+        <button id="frBtn" class="active">FR</button>
+        <button id="enBtn">EN</button>
       </div>
-      <div class="nav-actions">
-        <div class="pill-switch">
-          <button id="btn-fr" class="active" type="button">FR</button>
-          <button id="btn-en" type="button">EN</button>
+      <button class="secondary" onclick="showPage('cv')">CV</button>
+      <button class="primary" onclick="showPage('tracker')">Suivi privé</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Technicien TI · IT Technician · Montréal</div>
+    <h1>Yann Ouahnoun</h1>
+    <p id="heroText"></p>
+
+    <div class="chips">
+      <span class="chip" id="chip1"></span>
+      <span class="chip" id="chip2"></span>
+      <span class="chip">Windows · macOS</span>
+      <span class="chip">NinjaOne · Addigy</span>
+      <span class="chip">ADManager Plus · MDT</span>
+      <span class="chip">ServiceNow · Freshdesk</span>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn-light" id="cvFr"
+         href="./Yann%20Ouahnoun-%20CV%20FR-%20Technicien%20TI%20-%202026%20%20v3.pdf"
+         target="_blank" rel="noopener">
+        Télécharger CV FR
+      </a>
+
+      <a class="btn btn-light" id="cvEn"
+         href="./Yann%20Ouahnoun-%20English%20Resume%20-%20IT%20Technician%20-%202026%20%20v3.pdf"
+         target="_blank" rel="noopener">
+        Download CV EN
+      </a>
+
+      <a class="btn btn-light"
+         href="./Yann-Ouahnoun-CV-FR-Technicien-TI-2026-v2.pdf"
+         target="_blank" rel="noopener">
+        Télécharger CV avec réalisations chiffrées — FR
+      </a>
+
+      <a class="btn btn-light"
+         href="./Yann-Ouahnoun-English-Resume-IT-Technician-2026-v2.pdf"
+         target="_blank" rel="noopener">
+        Download Resume with Quantified Achievements — EN
+      </a>
+
+      <a class="btn btn-outline" href="#contact">Me contacter</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat"><strong>14+</strong><span id="s1"></span></div>
+  <div class="stat"><strong>1000+</strong><span id="s2"></span></div>
+  <div class="stat"><strong>&gt;85%</strong><span id="s3"></span></div>
+  <div class="stat"><strong>500+</strong><span id="s4"></span></div>
+  <div class="stat"><strong>600+</strong><span id="s5"></span></div>
+  <div class="stat"><strong>300+</strong><span id="s6"></span></div>
+</section>
+
+<div class="tabs">
+  <button id="cvTab" class="active" onclick="showPage('cv')">CV & Profil</button>
+  <button id="trackerTab" onclick="showPage('tracker')">Suivi candidatures 🔒</button>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-section">
+      <div class="avatar">YO</div>
+      <div class="side-name">Yann Ouahnoun</div>
+      <div class="side-role" id="sideRole"></div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title" id="skillsTitle"></div>
+      <div class="tags" id="tags"></div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title" id="langTitle"></div>
+      <ul class="side-list" id="langs"></ul>
+    </div>
+
+    <div class="side-section">
+      <div class="side-title">Contact</div>
+      <ul class="side-list">
+        <li>📞 514.569.8997</li>
+        <li>✉️ <a href="mailto:yann_72@msn.com">yann_72@msn.com</a></li>
+        <li>💼 <a href="https://ca.linkedin.com/in/yannouahnoun" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li>📍 Montréal, QC</li>
+      </ul>
+    </div>
+
+    <a class="private-link" href="javascript:void(0)" onclick="showPage('tracker')">
+      🔒 Suivi privé
+    </a>
+  </aside>
+
+  <main class="content">
+    <div id="cvPage">
+      <section class="card">
+        <div class="card-head">
+          <div class="icon">👤</div>
+          <h2 id="profileTitle"></h2>
         </div>
-        <button class="ghost-btn" type="button" onclick="showPage('cv')">CV</button>
-        <button class="solid-btn" type="button" onclick="showPage('tracker')">Suivi privé</button>
-      </div>
-    </div>
-  </header>
+        <div class="card-body">
+          <p class="lead" id="profileText"></p>
+        </div>
+      </section>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow" id="hero-eyebrow">Technicien informatique · IT Technician</div>
-      <h1>Yann Ouahnoun</h1>
-      <p class="hero-subtitle" id="hero-subtitle"></p>
+      <section class="card">
+        <div class="card-head">
+          <div class="icon">⭐</div>
+          <h2 id="achievementsTitle"></h2>
+        </div>
+        <div class="card-body">
+          <div class="achievement-grid" id="achievements"></div>
+        </div>
+      </section>
 
-      <div class="chip-row">
-        <span class="chip" id="chip-1"></span>
-        <span class="chip" id="chip-2"></span>
-        <span class="chip">Windows · macOS</span>
-        <span class="chip">NinjaOne · Addigy</span>
-        <span class="chip">ADManager Plus · MDT</span>
-        <span class="chip">ServiceNow · Freshdesk</span>
-      </div>
+      <section class="card">
+        <div class="card-head">
+          <div class="icon">💼</div>
+          <h2 id="experienceTitle"></h2>
+        </div>
+        <div class="card-body" id="experience"></div>
+      </section>
 
-      <div class="cta-row">
-        <a class="solid-btn" id="cv-fr-link" href="./Yann%20Ouahnoun%20CV%202026%20-%20Technicien%20Informatique%20v7.pdf" target="_blank">Télécharger CV FR</a>
-        <a class="solid-btn" id="cv-en-link" href="./Yann%20Ouahnoun%20-%20English%20Resume%202026%20-%20IT%20Technician_v5.pdf" target="_blank">Download CV EN</a>
-        <a class="solid-btn" id="cv-chiffre-fr-link" href="./Yann Ouahnoun- CV FR- Technicien TI - 2026  v3.pdf" target="_blank">Télécharger CV chiffré FR</a>
-        <a class="solid-btn" id="cv-chiffre-en-link" href="./Yann Ouahnoun- English Resume - IT Technician - 2026  v3.pdf" target="_blank">Download CV chiffré EN</a>
-        <a class="ghost-btn" href="#contact-card" id="contact-cta">Me contacter</a>
-      </div>
-    </div>
-  </section>
+      <section class="card">
+        <div class="card-head">
+          <div class="icon">🎓</div>
+          <h2 id="educationTitle"></h2>
+        </div>
+        <div class="card-body">
+          <ul class="side-list" id="education"></ul>
+        </div>
+      </section>
 
-  <section class="stats">
-    <div class="stat"><div class="stat-num">14+</div><div class="stat-label" id="stat-1"></div></div>
-    <div class="stat"><div class="stat-num">1000+</div><div class="stat-label" id="stat-2"></div></div>
-    <div class="stat"><div class="stat-num">&gt;85%</div><div class="stat-label" id="stat-3"></div></div>
-    <div class="stat"><div class="stat-num">500+</div><div class="stat-label" id="stat-4"></div></div>
-    <div class="stat"><div class="stat-num">600+</div><div class="stat-label" id="stat-5"></div></div>
-    <div class="stat"><div class="stat-num">300+</div><div class="stat-label" id="stat-6"></div></div>
-  </section>
+      <section class="card" id="contact">
+        <div class="card-head">
+          <div class="icon">✉️</div>
+          <h2 id="contactTitle"></h2>
+        </div>
+        <div class="card-body">
+          <p class="lead" id="contactIntro"></p>
 
-  <div class="page-tabs">
-    <button id="tab-cv" class="active" type="button" onclick="showPage('cv')">CV & Profil</button>
-    <button id="tab-tracker" type="button" onclick="showPage('tracker')">Suivi candidatures 🔒</button>
-  </div>
-
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-head">
-        <div class="avatar">YO</div>
-        <div class="sidebar-name">Yann Ouahnoun</div>
-        <div class="sidebar-role" id="sidebar-role"></div>
-      </div>
-
-      <div class="sidebar-section">
-        <h3 id="sidebar-skills-title"></h3>
-        <div class="tag-list" id="skills-tags"></div>
-      </div>
-
-      <div class="sidebar-section">
-        <h3 id="sidebar-languages-title"></h3>
-        <ul class="plain-list" id="languages-list"></ul>
-      </div>
-
-      <div class="sidebar-section">
-        <h3 id="sidebar-contact-title"></h3>
-        <ul class="plain-list">
-          <li>📞 514.569.8997</li>
-          <li>✉️ <a href="mailto:yann_72@msn.com">yann_72@msn.com</a></li>
-          <li>💼 <a href="https://ca.linkedin.com/in/yannouahnoun" target="_blank">LinkedIn</a></li>
-          <li>📍 Montréal, QC</li>
-        </ul>
-      </div>
-
-      <a class="sidebar-link" href="javascript:void(0)" onclick="showPage('tracker')" id="sidebar-private-link"></a>
-    </aside>
-
-    <main class="content">
-      <div id="cv-page">
-        <section class="card">
-          <div class="card-head">
-            <div class="card-icon">👤</div>
-            <h2 class="card-title" id="profile-title"></h2>
-          </div>
-          <div class="card-body">
-            <p class="lead" id="profile-text"></p>
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="card-head">
-            <div class="card-icon">⭐</div>
-            <h2 class="card-title" id="achievements-title"></h2>
-          </div>
-          <div class="card-body">
-            <div class="achievement-grid" id="achievements-grid"></div>
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="card-head">
-            <div class="card-icon">💼</div>
-            <h2 class="card-title" id="experience-title"></h2>
-          </div>
-          <div class="card-body" id="experience-list"></div>
-        </section>
-
-        <section class="card">
-          <div class="card-head">
-            <div class="card-icon">🎓</div>
-            <h2 class="card-title" id="education-title"></h2>
-          </div>
-          <div class="card-body">
-            <ul class="edu-list" id="education-list"></ul>
-          </div>
-        </section>
-
-        <section class="card" id="contact-card">
-          <div class="card-head">
-            <div class="card-icon">✉️</div>
-            <h2 class="card-title" id="contact-title"></h2>
-          </div>
-          <div class="card-body">
-            <p class="lead" id="contact-intro" style="margin-bottom:18px"></p>
-            <form action="https://formspree.io/f/mrbnaajz" method="POST" class="contact-form">
-              <div class="field">
-                <label id="label-name"></label>
-                <input type="text" name="name" required>
-              </div>
-              <div class="field">
-                <label id="label-email"></label>
-                <input type="email" name="email" required>
-              </div>
-              <div class="field">
-                <label id="label-company"></label>
-                <input type="text" name="company">
-              </div>
-              <div class="field">
-                <label id="label-position"></label>
-                <input type="text" name="position">
-              </div>
-              <div class="field full">
-                <label id="label-message"></label>
-                <textarea name="message" required></textarea>
-              </div>
-              <div class="field full">
-                <button class="submit-btn" type="submit" id="submit-text"></button>
-              </div>
-            </form>
-          </div>
-        </section>
-      </div>
-
-      <div id="tracker-page" class="tracker-panel">
-        <section class="card">
-          <div class="card-head">
-            <div class="card-icon">🔒</div>
-            <h2 class="card-title">Suivi détaillé des candidatures</h2>
-          </div>
-          <div class="card-body">
-            <div id="tracker-lock" class="tracker-lock">
-              <p class="lead">Entre ton mot de passe pour afficher le tableau privé.</p>
-              <input type="password" id="tracker-password" placeholder="Mot de passe">
-              <button class="submit-btn" type="button" onclick="unlockTracker()">Déverrouiller</button>
+          <form class="contact-form"
+                action="https://formspree.io/f/mrbnaajz"
+                method="POST"
+                style="margin-top:16px">
+            <div class="field">
+              <label id="nameLabel"></label>
+              <input name="name" required>
             </div>
 
-            <div id="tracker-app" class="tracker-app">
-              <div class="tracker-grid">
-                <input id="f-company" type="text" placeholder="Entreprise">
-                <input id="f-role" type="text" placeholder="Poste">
-                <input id="f-date" type="date">
-                <select id="f-status">
-                  <option>Ouvert</option>
-                  <option>Relance à faire</option>
-                  <option>Entretien prévu</option>
-                  <option>En attente</option>
-                  <option>Refusé</option>
-                  <option>Offre reçue</option>
-                </select>
-              </div>
+            <div class="field">
+              <label id="emailLabel"></label>
+              <input type="email" name="email" required>
+            </div>
 
-              <div class="tracker-grid">
-                <input id="f-contact" type="text" placeholder="Contact">
-                <input id="f-email" type="email" placeholder="Email contact">
-                <input id="f-phone" type="text" placeholder="Téléphone">
-                <input id="f-link" type="text" placeholder="Lien offre">
-              </div>
+            <div class="field">
+              <label id="companyLabel"></label>
+              <input name="company">
+            </div>
 
-              <div class="tracker-grid-2">
-                <textarea id="f-steps" placeholder="Étapes réalisées"></textarea>
-                <textarea id="f-notes" placeholder="Notes / retour"></textarea>
-              </div>
+            <div class="field">
+              <label id="positionLabel"></label>
+              <input name="position">
+            </div>
 
-              <div class="tracker-actions">
-                <button class="submit-btn" type="button" onclick="saveEntry()">Enregistrer</button>
-                <button class="secondary-btn" type="button" onclick="resetForm()">Réinitialiser</button>
-                <button class="secondary-btn" type="button" onclick="exportCSV()">Exporter CSV</button>
-              </div>
+            <div class="field full">
+              <label id="messageLabel"></label>
+              <textarea name="message" required></textarea>
+            </div>
 
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Entreprise</th>
-                      <th>Poste</th>
-                      <th>Date</th>
-                      <th>Contact</th>
-                      <th>Statut</th>
-                      <th>Lien</th>
-                      <th>Notes</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="tracker-body"></tbody>
-                </table>
-              </div>
+            <div class="field full">
+              <button class="submit" id="submitText" type="submit"></button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <div id="trackerPage" class="tracker-page">
+      <section class="card">
+        <div class="card-head">
+          <div class="icon">🔒</div>
+          <h2>Suivi des candidatures</h2>
+        </div>
+
+        <div class="card-body">
+          <div class="lock" id="lock">
+            <p class="lead">Entre ton mot de passe pour afficher le tableau privé.</p>
+            <input type="password" id="password" placeholder="Mot de passe">
+            <button class="submit" onclick="unlock()">Déverrouiller</button>
+          </div>
+
+          <div class="tracker-app" id="trackerApp">
+            <div class="tracker-grid">
+              <input id="company" placeholder="Entreprise">
+              <input id="role" placeholder="Poste">
+              <input id="date" type="date">
+
+              <select id="status">
+                <option>Ouvert</option>
+                <option>Relance à faire</option>
+                <option>Entretien prévu</option>
+                <option>En attente</option>
+                <option>Refusé</option>
+                <option>Offre reçue</option>
+              </select>
+            </div>
+
+            <div class="tracker-grid">
+              <input id="contactName" placeholder="Contact">
+              <input id="contactEmail" placeholder="Email">
+              <input id="phone" placeholder="Téléphone">
+              <input id="link" placeholder="Lien de l'offre">
+            </div>
+
+            <div class="tracker-grid two">
+              <textarea id="steps" placeholder="Étapes réalisées"></textarea>
+              <textarea id="notes" placeholder="Notes / retour"></textarea>
+            </div>
+
+            <div class="tracker-actions">
+              <button class="submit" onclick="saveEntry()">Enregistrer</button>
+              <button class="outline" onclick="resetForm()">Réinitialiser</button>
+              <button class="outline" onclick="exportCSV()">Exporter CSV</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Entreprise</th>
+                    <th>Poste</th>
+                    <th>Date</th>
+                    <th>Contact</th>
+                    <th>Statut</th>
+                    <th>Lien</th>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+              </table>
             </div>
           </div>
-        </section>
-      </div>
-    </main>
-  </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
 
-  <footer class="footer">
-    Yann Ouahnoun · Technicien Informatique / IT Technician · Montréal, QC
-  </footer>
+<footer class="footer">
+  Yann Ouahnoun · Technicien TI / IT Technician · Montréal, QC
+</footer>
 
-  <script>
-    const TRACKER_PASSWORD = "JobSearch!26";
-    const TRACKER_KEY = "yann_job_tracker_v2";
-    let currentLang = "fr";
-    let editingId = null;
+<script>
+const PASSWORD = "JobSearch!26";
+const KEY = "yann_job_tracker_v2";
+let editing = null;
 
-    const data = {
-      fr: {
-        heroSubtitle: "Technicien informatique avec plus de 14 ans d'expérience en support technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS, en gestion des accès, en déploiement de postes et en résolution rapide des incidents.",
-        chip1: "14+ ans d'expérience",
-        chip2: "Bilingue FR/EN",
-        stat1: "Années d'expérience",
-        stat2: "Utilisateurs supportés",
-        stat3: "Résolution 1er contact",
-        stat4: "Postes déployés",
-        stat5: "Tickets par an",
-        stat6: "Utilisateurs formés",
-        sidebarRole: "Technicien informatique",
-        sidebarSkillsTitle: "Compétences clés",
-        sidebarLanguagesTitle: "Langues",
-        sidebarContactTitle: "Contact",
-        sidebarPrivateLink: "Ouvrir le suivi privé",
-        profileTitle: "Profil professionnel",
-        profileText: "Technicien informatique avec plus de 14 ans d'expérience en support technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS. Expert en diagnostic et résolution de pannes, gestion des accès via Active Directory et ADManager Plus, et traitement de tickets dans ServiceNow et Freshdesk. Reconnu pour ma capacité à vulgariser les solutions techniques, former les utilisateurs et maintenir un haut niveau de satisfaction client. Bilingue français/anglais, axé sur la rigueur, la communication et la résolution rapide des incidents.",
-        achievementsTitle: "Réalisations clés",
-        experienceTitle: "Expériences professionnelles",
-        educationTitle: "Formations",
-        contactTitle: "Recruteurs — Contact",
-        contactIntro: "Utilisez ce formulaire pour me contacter au sujet d'une opportunité ou d'un poste.",
-        labelName: "Votre nom",
-        labelEmail: "Email professionnel",
-        labelCompany: "Entreprise",
-        labelPosition: "Poste proposé",
-        labelMessage: "Message",
-        submitText: "Envoyer le message",
-        cvFr: "Télécharger CV FR",
-        cvEn: "Download CV EN",
-        cvChiffreFr: "Télécharger CV chiffré FR",
-        cvChiffreEn: "Download CV chiffré EN",
-        contactCta: "Me contacter",
-        skills: [
-          "NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk",
-          "Microsoft 365","Active Directory","Windows","macOS","VMware","Hyper-V","Cisco"
-        ],
-        languages: [
-          "Français : langue maternelle",
-          "Anglais : expert (écrit et parlé)",
-          "Espagnol : expert (écrit et parlé)",
-          "Arabe : parlé"
-        ],
-        achievements: [
-          {n: ">85%", t: "Taux de résolution au premier contact via NinjaOne"},
-          {n: "~40%", t: "Réduction des délais de provisioning via ADManager Plus"},
-          {n: "500+", t: "Postes Windows déployés et standardisés via MDT"},
-          {n: "600+", t: "Tickets annuels résolus dans ServiceNow ITSM et Freshdesk"},
-          {n: "300+", t: "Utilisateurs formés et plus de 25 procédures rédigées"},
-          {n: "98%", t: "Taux de réussite sur 60 stations déployées via SCCM"}
-        ],
-        experience: [
-          {
-            company: "Institut Lady Davis – Hôpital Général Juif",
-            title: "Technicien Informatique",
-            period: "2018 – 2025 · Montréal, QC",
-            bullets: [
-              "Assuré le support technique de 1er et 2ème niveau aux utilisateurs Windows et macOS, avec résolution des incidents, VPN et accès à distance via NinjaOne.",
-              "Géré les comptes utilisateurs, groupes de distribution, licences Microsoft 365 et authentification MFA via ADManager Plus.",
-              "Déployé et maintenu les postes de travail Windows via MDT (Microsoft Deployment Toolkit) et géré les terminaux macOS/iOS via Addigy.",
-              "Traité et suivi les tickets d'incident dans ServiceNow ITSM et Freshdesk, en assurant la communication avec les utilisateurs à chaque étape.",
-              "Sécurisé les partages réseau en attribuant les permissions et en résolvant les problèmes d'accès ; effectué une surveillance de base des serveurs et escaladé les incidents d'infrastructure au besoin.",
-              "Rédigé la documentation technique et les procédures de support ; formé les utilisateurs finaux aux outils TI et aux politiques de l'entreprise.",
-              "Assuré le soutien des équipements audiovisuels et des salles de conférence (projecteurs, systèmes de visioconférence) ; préparé et configuré les salles avant les réunions et présentations."
-            ]
-          },
-          {
-            company: "ISR Transit",
-            title: "Chef d'Équipe Support Clientèle",
-            period: "2017 – 2018 · Montréal, QC",
-            bullets: [
-              "Géré l'équipe de soutien et coordonné les interventions sur le terrain.",
-              "Supervisé le déploiement et les mises à jour de logiciels."
-            ]
-          },
-          {
-            company: "Dell Canada – Bombardier",
-            title: "Technicien de Terrain",
-            period: "2015 – 2016 · Dorval, QC",
-            bullets: [
-              "Déployé des stations de travail et des logiciels via Microsoft System Center Configuration Manager."
-            ]
-          },
-          {
-            company: "NorthStar Harris Computer Systems",
-            title: "Soutien Bureautique & Systèmes",
-            period: "2011 – 2015 · Montréal, QC",
-            bullets: [
-              "Fourni un soutien de niveau 2 aux unités d'affaires en Amérique du Nord.",
-              "Géré les comptes d'utilisateurs et les permissions via Active Directory et SharePoint.",
-              "Effectué la migration de systèmes d'exploitation Windows et la résolution de pannes.",
-              "Rédigé la documentation technique et de formation pour les utilisateurs et les techniciens.",
-              "Configuré et maintenu les téléphones Cisco, testé les liaisons physiques et les connexions en salle Telecom ; géré les comptes, politiques d'accès et ajouts aux groupes d'appels sur Lync 2010/2013 et Skype for Business."
-            ]
-          }
-        ],
-        education: [
-          "Formation interne chez Harris Computer Systems | 2015",
-          "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
-          "BTS Commerce International | École O.R.T., 1996",
-          "Baccalauréat Français en Gestion Informatique | École O.R.T., Casablanca, 1994"
+const data = {
+  fr: {
+    hero: "Technicien informatique avec plus de 14 ans d'expérience en soutien technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS, gestion des accès, déploiement de postes et résolution rapide des incidents.",
+    chip1: "14+ ans d'expérience",
+    chip2: "Bilingue FR/EN",
+    s: [
+      "Années d'expérience",
+      "Utilisateurs supportés",
+      "Résolution 1er contact",
+      "Postes déployés",
+      "Tickets par an",
+      "Utilisateurs formés"
+    ],
+    role: "Technicien informatique",
+    skillsTitle: "Compétences clés",
+    langTitle: "Langues",
+    profileTitle: "Profil professionnel",
+    profile: "Technicien informatique avec plus de 14 ans d'expérience en support technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS. Expert en diagnostic et résolution de pannes, gestion des accès via Active Directory et ADManager Plus, et traitement de tickets dans ServiceNow et Freshdesk. Reconnu pour ma capacité à vulgariser les solutions techniques, former les utilisateurs et maintenir un haut niveau de satisfaction client. Bilingue français/anglais, axé sur la rigueur, la communication et la résolution rapide des incidents.",
+    achievementsTitle: "Réalisations clés",
+    experienceTitle: "Expériences professionnelles",
+    educationTitle: "Formations",
+    contactTitle: "Recruteurs — Contact",
+    contactIntro: "Utilisez ce formulaire pour me contacter au sujet d'une opportunité ou d'un poste.",
+    labels: [
+      "Votre nom",
+      "Email professionnel",
+      "Entreprise",
+      "Poste proposé",
+      "Message"
+    ],
+    submit: "Envoyer le message",
+    cvFr: "Télécharger CV FR",
+    cvEn: "Download CV EN",
+    tags: [
+      "NinjaOne",
+      "ADManager Plus",
+      "MDT",
+      "Addigy",
+      "ServiceNow ITSM",
+      "Freshdesk",
+      "Microsoft 365",
+      "Active Directory",
+      "Windows",
+      "macOS",
+      "VMware",
+      "Hyper-V",
+      "Cisco"
+    ],
+    langs: [
+      "Français : langue maternelle",
+      "Anglais : expert (écrit et parlé)",
+      "Espagnol : expert (écrit et parlé)",
+      "Arabe : parlé"
+    ],
+    a: [
+      [">85%", "Taux de résolution au premier contact via NinjaOne"],
+      ["~40%", "Réduction des délais de provisioning via ADManager Plus"],
+      ["500+", "Postes Windows déployés via MDT"],
+      ["600+", "Tickets annuels résolus dans ServiceNow ITSM et Freshdesk"],
+      ["300+", "Utilisateurs formés et 25+ procédures rédigées"],
+      ["98%", "Taux de réussite sur 60 stations via SCCM"]
+    ],
+    jobs: [
+      {
+        c: "Institut Lady Davis – Hôpital Général Juif",
+        r: "Technicien Informatique",
+        p: "2018 – 2025 · Montréal, QC",
+        b: [
+          "Support technique N1/N2 aux utilisateurs Windows et macOS, résolution à distance via NinjaOne.",
+          "Gestion des comptes utilisateurs, groupes, licences Microsoft 365 et MFA via ADManager Plus.",
+          "Déploiement Windows via MDT et gestion des terminaux macOS/iOS via Addigy.",
+          "Suivi et résolution des billets ServiceNow ITSM et Freshdesk.",
+          "Sécurisation des partages réseau et surveillance de base des serveurs.",
+          "Documentation technique et formation des utilisateurs.",
+          "Soutien audiovisuel et salles de conférence."
         ]
       },
-      en: {
-        heroSubtitle: "IT Technician with over 14 years of experience in end-user support, specializing in Windows and macOS environments, access management, workstation deployment, and fast incident resolution.",
-        chip1: "14+ years of experience",
-        chip2: "Bilingual FR/EN",
-        stat1: "Years of experience",
-        stat2: "Users supported",
-        stat3: "1st-contact resolution",
-        stat4: "Workstations deployed",
-        stat5: "Tickets per year",
-        stat6: "Users trained",
-        sidebarRole: "IT Technician",
-        sidebarSkillsTitle: "Key skills",
-        sidebarLanguagesTitle: "Languages",
-        sidebarContactTitle: "Contact",
-        sidebarPrivateLink: "Open private tracker",
-        profileTitle: "Professional profile",
-        profileText: "IT Technician with over 14 years of experience providing end-user technical support in Windows and macOS environments. Expert in incident resolution, user account and access management via Active Directory and ADManager Plus, and ticket tracking through ServiceNow and Freshdesk. Known for the ability to explain technical solutions to non-technical users, train end users, and maintain a high level of client satisfaction. Fully bilingual in French and English, with a strong focus on rigor, communication, and efficient incident resolution.",
-        achievementsTitle: "Key achievements",
-        experienceTitle: "Professional experience",
-        educationTitle: "Education",
-        contactTitle: "Recruiters — Contact",
-        contactIntro: "Use this form to contact me regarding a role or opportunity.",
-        labelName: "Your name",
-        labelEmail: "Business email",
-        labelCompany: "Company",
-        labelPosition: "Position offered",
-        labelMessage: "Message",
-        submitText: "Send message",
-        cvFr: "Download CV FR",
-        cvEn: "Download CV EN",
-        cvChiffreFr: "Download CV FR with Quantified Achievements",
-        cvChiffreEn: "Download CV EN with Quantified Achievements",
-        contactCta: "Contact me",
-        skills: [
-          "NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk",
-          "Microsoft 365","Active Directory","Windows","macOS","VMware","Hyper-V","Cisco"
-        ],
-        languages: [
-          "French: Native language",
-          "English: Expert (written and spoken)",
-          "Spanish: Expert (written and spoken)",
-          "Arabic: Spoken"
-        ],
-        achievements: [
-          {n: ">85%", t: "First-contact resolution rate via NinjaOne"},
-          {n: "~40%", t: "Provisioning turnaround reduction via ADManager Plus"},
-          {n: "500+", t: "Windows workstations deployed and standardized via MDT"},
-          {n: "600+", t: "Annual tickets resolved in ServiceNow ITSM and Freshdesk"},
-          {n: "300+", t: "Users trained and 25+ procedures authored"},
-          {n: "98%", t: "Success rate across 60 stations deployed via SCCM"}
-        ],
-        experience: [
-          {
-            company: "Institut Lady Davis – Jewish General Hospital",
-            title: "IT Technician",
-            period: "2018 – 2025 · Montreal, QC",
-            bullets: [
-              "Provided Level 1 and 2 technical support to Windows and macOS users, including incident resolution, VPN support, and remote troubleshooting via NinjaOne.",
-              "Managed user accounts, distribution groups, Microsoft 365 licenses, and MFA enrollment using ADManager Plus.",
-              "Deployed and maintained Windows workstations using MDT (Microsoft Deployment Toolkit) and managed macOS/iOS endpoints via Addigy.",
-              "Tracked and resolved support tickets in ServiceNow ITSM and Freshdesk, keeping users informed at every stage of the process.",
-              "Secured network shares by assigning permissions and resolving access issues; performed basic server monitoring and escalated infrastructure incidents as needed.",
-              "Wrote technical documentation and support procedures; trained end users on IT tools and company policies.",
-              "Supported audiovisual equipment and conference rooms (projectors, video conferencing systems); prepared meeting rooms prior to presentations and meetings."
-            ]
-          },
-          {
-            company: "ISR Transit",
-            title: "Customer Support Team Lead",
-            period: "2017 – 2018 · Montreal, QC",
-            bullets: [
-              "Managed the support team and coordinated field interventions.",
-              "Supervised software deployment and updates."
-            ]
-          },
-          {
-            company: "Dell Canada – Bombardier",
-            title: "Field Technician",
-            period: "2015 – 2016 · Dorval, QC",
-            bullets: [
-              "Deployed workstations and software via Microsoft System Center Configuration Manager."
-            ]
-          },
-          {
-            company: "NorthStar Harris Computer Systems",
-            title: "Office Support & Systems",
-            period: "2011 – 2015 · Montreal, QC",
-            bullets: [
-              "Provided Level 2 support to business units across North America.",
-              "Managed user accounts and permissions via Active Directory and SharePoint.",
-              "Performed Windows operating system migrations and troubleshooting.",
-              "Wrote technical and training documentation for users and technicians.",
-              "Configured and maintained Cisco IP phones, tested physical line connections and cabling in the Telecom room; managed accounts, access policies, and call group assignments on Lync 2010/2013 and Skype for Business."
-            ]
-          }
-        ],
-        education: [
-          "Internal Training at Harris Computer Systems | 2015",
-          "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
-          "BTS International Business | École O.R.T., 1996",
-          "French Baccalaureate in IT Management | École O.R.T., Casablanca, 1994"
+      {
+        c: "ISR Transit",
+        r: "Chef d'Équipe Support Clientèle",
+        p: "2017 – 2018 · Montréal, QC",
+        b: [
+          "Gestion de l'équipe de soutien et coordination des interventions terrain.",
+          "Supervision des déploiements et mises à jour logicielles."
+        ]
+      },
+      {
+        c: "Dell Canada – Bombardier",
+        r: "Technicien de Terrain",
+        p: "2015 – 2016 · Dorval, QC",
+        b: [
+          "Déploiement de postes et logiciels via SCCM."
+        ]
+      },
+      {
+        c: "NorthStar Harris Computer Systems",
+        r: "Soutien Bureautique & Systèmes",
+        p: "2011 – 2015 · Montréal, QC",
+        b: [
+          "Soutien N2 aux unités d'affaires en Amérique du Nord.",
+          "Gestion des comptes et permissions via Active Directory et SharePoint.",
+          "Migrations Windows, documentation et dépannage.",
+          "Téléphones Cisco, Lync et Skype for Business."
         ]
       }
-    };
+    ],
+    edu: [
+      "Formation interne chez Harris Computer Systems | 2015",
+      "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
+      "BTS Commerce International | École O.R.T., 1996",
+      "Baccalauréat Français en Gestion Informatique | École O.R.T., 1994"
+    ]
+  },
 
-    function renderTags(items){
-      return items.map(item => `<span class="tag">${item}</span>`).join("");
-    }
+  en: {
+    hero: "IT Technician with over 14 years of experience in end-user support, specializing in Windows and macOS environments, access management, workstation deployment, and fast incident resolution.",
+    chip1: "14+ years of experience",
+    chip2: "Bilingual FR/EN",
+    s: [
+      "Years of experience",
+      "Users supported",
+      "1st-contact resolution",
+      "Workstations deployed",
+      "Tickets per year",
+      "Users trained"
+    ],
+    role: "IT Technician",
+    skillsTitle: "Key skills",
+    langTitle: "Languages",
+    profileTitle: "Professional profile",
+    profile: "IT Technician with over 14 years of experience providing end-user technical support in Windows and macOS environments. Expert in incident resolution, user account and access management via Active Directory and ADManager Plus, and ticket tracking through ServiceNow and Freshdesk. Known for the ability to explain technical solutions to non-technical users, train end users, and maintain a high level of client satisfaction. Fully bilingual in French and English, with a strong focus on rigor, communication, and efficient incident resolution.",
+    achievementsTitle: "Key achievements",
+    experienceTitle: "Professional experience",
+    educationTitle: "Education",
+    contactTitle: "Recruiters — Contact",
+    contactIntro: "Use this form to contact me regarding a role or opportunity.",
+    labels: [
+      "Your name",
+      "Business email",
+      "Company",
+      "Position offered",
+      "Message"
+    ],
+    submit: "Send message",
+    cvFr: "Download CV FR",
+    cvEn: "Download CV EN",
+    tags: [
+      "NinjaOne",
+      "ADManager Plus",
+      "MDT",
+      "Addigy",
+      "ServiceNow ITSM",
+      "Freshdesk",
+      "Microsoft 365",
+      "Active Directory",
+      "Windows",
+      "macOS",
+      "VMware",
+      "Hyper-V",
+      "Cisco"
+    ],
+    langs: [
+      "French: Native language",
+      "English: Expert (written and spoken)",
+      "Spanish: Expert (written and spoken)",
+      "Arabic: Spoken"
+    ],
+    a: [
+      [">85%", "First-contact resolution rate via NinjaOne"],
+      ["~40%", "Provisioning turnaround reduction via ADManager Plus"],
+      ["500+", "Windows workstations deployed via MDT"],
+      ["600+", "Annual tickets resolved in ServiceNow ITSM and Freshdesk"],
+      ["300+", "Users trained and 25+ procedures authored"],
+      ["98%", "Success rate across 60 stations via SCCM"]
+    ],
+    jobs: [
+      {
+        c: "Institut Lady Davis – Jewish General Hospital",
+        r: "IT Technician",
+        p: "2018 – 2025 · Montreal, QC",
+        b: [
+          "Provided Level 1 and 2 support to Windows and macOS users via NinjaOne.",
+          "Managed user accounts, groups, Microsoft 365 licenses and MFA via ADManager Plus.",
+          "Deployed Windows workstations via MDT and managed macOS/iOS endpoints via Addigy.",
+          "Tracked and resolved tickets in ServiceNow ITSM and Freshdesk.",
+          "Secured network shares and performed basic server monitoring.",
+          "Wrote technical documentation and trained end users.",
+          "Supported AV equipment and conference rooms."
+        ]
+      },
+      {
+        c: "ISR Transit",
+        r: "Customer Support Team Lead",
+        p: "2017 – 2018 · Montreal, QC",
+        b: [
+          "Managed the support team and coordinated field interventions.",
+          "Supervised software deployment and updates."
+        ]
+      },
+      {
+        c: "Dell Canada – Bombardier",
+        r: "Field Technician",
+        p: "2015 – 2016 · Dorval, QC",
+        b: [
+          "Deployed workstations and software via SCCM."
+        ]
+      },
+      {
+        c: "NorthStar Harris Computer Systems",
+        r: "Office Support & Systems",
+        p: "2011 – 2015 · Montreal, QC",
+        b: [
+          "Provided Level 2 support to business units across North America.",
+          "Managed accounts and permissions via Active Directory and SharePoint.",
+          "Performed Windows migrations and troubleshooting.",
+          "Supported Cisco phones, Lync and Skype for Business."
+        ]
+      }
+    ],
+    edu: [
+      "Internal Training at Harris Computer Systems | 2015",
+      "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
+      "BTS International Business | École O.R.T., 1996",
+      "French Baccalaureate in IT Management | École O.R.T., Casablanca, 1994"
+    ]
+  }
+};
 
-    function renderLanguages(items){
-      return items.map(item => `<li>${item}</li>`).join("");
-    }
+function $(id){
+  return document.getElementById(id);
+}
 
-    function renderAchievements(items){
-      return items.map(item => `
-        <div class="achievement">
-          <strong>${item.n}</strong>
-          <span>${item.t}</span>
+function setLang(lang){
+  const d = data[lang];
+
+  $("frBtn").classList.toggle("active", lang === "fr");
+  $("enBtn").classList.toggle("active", lang === "en");
+
+  $("heroText").textContent = d.hero;
+  $("chip1").textContent = d.chip1;
+  $("chip2").textContent = d.chip2;
+
+  d.s.forEach((text, index) => {
+    $("s" + (index + 1)).textContent = text;
+  });
+
+  $("sideRole").textContent = d.role;
+  $("skillsTitle").textContent = d.skillsTitle;
+  $("langTitle").textContent = d.langTitle;
+  $("tags").innerHTML = d.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
+  $("langs").innerHTML = d.langs.map(language => `<li>${language}</li>`).join("");
+
+  $("profileTitle").textContent = d.profileTitle;
+  $("profileText").textContent = d.profile;
+  $("achievementsTitle").textContent = d.achievementsTitle;
+  $("achievements").innerHTML = d.a.map(item =>
+    `<div class="achievement"><strong>${item[0]}</strong><span>${item[1]}</span></div>`
+  ).join("");
+
+  $("experienceTitle").textContent = d.experienceTitle;
+  $("experience").innerHTML = d.jobs.map(job => `
+    <div class="job">
+      <div class="job-top">
+        <div>
+          <div class="company">${job.c}</div>
+          <div class="role">${job.r}</div>
         </div>
-      `).join("");
-    }
+        <div class="period">${job.p}</div>
+      </div>
+      <ul>${job.b.map(bullet => `<li>${bullet}</li>`).join("")}</ul>
+    </div>
+  `).join("");
 
-    function renderExperience(items){
-      return items.map(job => `
-        <div class="job">
-          <div class="job-top">
-            <div>
-              <div class="job-company">${job.company}</div>
-              <div class="job-title">${job.title}</div>
-            </div>
-            <div class="job-period">${job.period}</div>
-          </div>
-          <ul>${job.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
-        </div>
-      `).join("");
-    }
+  $("educationTitle").textContent = d.educationTitle;
+  $("education").innerHTML = d.edu.map(item => `<li>${item}</li>`).join("");
 
-    function renderEducation(items){
-      return items.map(item => `<li>${item}</li>`).join("");
-    }
+  $("contactTitle").textContent = d.contactTitle;
+  $("contactIntro").textContent = d.contactIntro;
 
-    function setLanguage(lang){
-      currentLang = lang;
-      const d = data[lang];
+  ["nameLabel","emailLabel","companyLabel","positionLabel","messageLabel"]
+    .forEach((id, index) => $(id).textContent = d.labels[index]);
 
-      document.documentElement.lang = lang;
-      document.getElementById("btn-fr").classList.toggle("active", lang === "fr");
-      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+  $("submitText").textContent = d.submit;
+  $("cvFr").textContent = d.cvFr;
+  $("cvEn").textContent = d.cvEn;
+}
 
-      document.getElementById("hero-subtitle").textContent = d.heroSubtitle;
-      document.getElementById("chip-1").textContent = d.chip1;
-      document.getElementById("chip-2").textContent = d.chip2;
-      document.getElementById("stat-1").textContent = d.stat1;
-      document.getElementById("stat-2").textContent = d.stat2;
-      document.getElementById("stat-3").textContent = d.stat3;
-      document.getElementById("stat-4").textContent = d.stat4;
-      document.getElementById("stat-5").textContent = d.stat5;
-      document.getElementById("stat-6").textContent = d.stat6;
+$("frBtn").onclick = () => setLang("fr");
+$("enBtn").onclick = () => setLang("en");
 
-      document.getElementById("sidebar-role").textContent = d.sidebarRole;
-      document.getElementById("sidebar-skills-title").textContent = d.sidebarSkillsTitle;
-      document.getElementById("sidebar-languages-title").textContent = d.sidebarLanguagesTitle;
-      document.getElementById("sidebar-contact-title").textContent = d.sidebarContactTitle;
-      document.getElementById("sidebar-private-link").textContent = d.sidebarPrivateLink;
+function showPage(page){
+  $("cvPage").style.display = page === "cv" ? "block" : "none";
+  $("trackerPage").style.display = page === "tracker" ? "block" : "none";
+  $("cvTab").classList.toggle("active", page === "cv");
+  $("trackerTab").classList.toggle("active", page === "tracker");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
 
-      document.getElementById("profile-title").textContent = d.profileTitle;
-      document.getElementById("profile-text").textContent = d.profileText;
-      document.getElementById("achievements-title").textContent = d.achievementsTitle;
-      document.getElementById("experience-title").textContent = d.experienceTitle;
-      document.getElementById("education-title").textContent = d.educationTitle;
-      document.getElementById("contact-title").textContent = d.contactTitle;
-      document.getElementById("contact-intro").textContent = d.contactIntro;
+function entries(){
+  return JSON.parse(localStorage.getItem(KEY) || "[]");
+}
 
-      document.getElementById("label-name").textContent = d.labelName;
-      document.getElementById("label-email").textContent = d.labelEmail;
-      document.getElementById("label-company").textContent = d.labelCompany;
-      document.getElementById("label-position").textContent = d.labelPosition;
-      document.getElementById("label-message").textContent = d.labelMessage;
-      document.getElementById("submit-text").textContent = d.submitText;
+function setEntries(value){
+  localStorage.setItem(KEY, JSON.stringify(value));
+}
 
-      document.getElementById("cv-fr-link").textContent = d.cvFr;
-      document.getElementById("cv-en-link").textContent = d.cvEn;
-      document.getElementById("cv-chiffre-fr-link").textContent = d.cvChiffreFr;
-      document.getElementById("cv-chiffre-en-link").textContent = d.cvChiffreEn;
-      document.getElementById("contact-cta").textContent = d.contactCta;
+function statusClass(status){
+  if(status === "Relance à faire") return "background:#fff4df;color:#9b5a00";
+  if(status === "Entretien prévu") return "background:#e7f6ec;color:#1d7a3a";
+  if(status === "Refusé") return "background:#fdecec;color:#b32b2b";
+  return "background:#e8f2ff;color:#1b57b8";
+}
 
-      document.getElementById("skills-tags").innerHTML = renderTags(d.skills);
-      document.getElementById("languages-list").innerHTML = renderLanguages(d.languages);
-      document.getElementById("achievements-grid").innerHTML = renderAchievements(d.achievements);
-      document.getElementById("experience-list").innerHTML = renderExperience(d.experience);
-      document.getElementById("education-list").innerHTML = renderEducation(d.education);
-    }
+function render(){
+  const body = $("rows");
+  body.innerHTML = "";
 
-    document.getElementById("btn-fr").addEventListener("click", () => setLanguage("fr"));
-    document.getElementById("btn-en").addEventListener("click", () => setLanguage("en"));
+  entries().forEach(entry => {
+    const row = document.createElement("tr");
 
-    function showPage(page){
-      const cvPage = document.getElementById("cv-page");
-      const trackerPage = document.getElementById("tracker-page");
-      const tabCv = document.getElementById("tab-cv");
-      const tabTracker = document.getElementById("tab-tracker");
+    row.innerHTML = `
+      <td>${entry.company || ""}</td>
+      <td>${entry.role || ""}</td>
+      <td>${entry.date || ""}</td>
+      <td>${entry.contact || ""}<br>${entry.email || ""}<br>${entry.phone || ""}</td>
+      <td><span class="status" style="${statusClass(entry.status)}">${entry.status || ""}</span></td>
+      <td>${entry.link ? `<a href="${entry.link}" target="_blank" rel="noopener">Voir</a>` : ""}</td>
+      <td><b>Étapes :</b> ${entry.steps || ""}<br><b>Notes :</b> ${entry.notes || ""}</td>
+      <td>
+        <button class="edit" onclick="editEntry('${entry.id}')">Modifier</button>
+        <button class="delete" onclick="deleteEntry('${entry.id}')">Supprimer</button>
+      </td>
+    `;
 
-      if(page === "tracker"){
-        cvPage.style.display = "none";
-        trackerPage.style.display = "block";
-        tabCv.classList.remove("active");
-        tabTracker.classList.add("active");
-        window.scrollTo({top: 0, behavior: "smooth"});
-      } else {
-        cvPage.style.display = "block";
-        trackerPage.style.display = "none";
-        tabCv.classList.add("active");
-        tabTracker.classList.remove("active");
-        window.scrollTo({top: 0, behavior: "smooth"});
-      }
-    }
+    body.appendChild(row);
+  });
+}
 
-    function getEntries(){
-      return JSON.parse(localStorage.getItem(TRACKER_KEY) || "[]");
-    }
+function resetForm(){
+  editing = null;
 
-    function setEntries(entries){
-      localStorage.setItem(TRACKER_KEY, JSON.stringify(entries));
-    }
+  [
+    "company",
+    "role",
+    "date",
+    "contactName",
+    "contactEmail",
+    "phone",
+    "link",
+    "steps",
+    "notes"
+  ].forEach(id => $(id).value = "");
 
-    function statusClass(status){
-      if(status === "Ouvert") return "s-open";
-      if(status === "Relance à faire") return "s-follow";
-      if(status === "Entretien prévu") return "s-interview";
-      if(status === "En attente") return "s-wait";
-      if(status === "Refusé") return "s-reject";
-      if(status === "Offre reçue") return "s-offer";
-      return "s-open";
-    }
+  $("status").value = "Ouvert";
+}
 
-    function renderTracker(){
-      const entries = getEntries();
-      const body = document.getElementById("tracker-body");
-      body.innerHTML = "";
+function saveEntry(){
+  const entry = {
+    id: editing || crypto.randomUUID(),
+    company: $("company").value.trim(),
+    role: $("role").value.trim(),
+    date: $("date").value,
+    status: $("status").value,
+    contact: $("contactName").value.trim(),
+    email: $("contactEmail").value.trim(),
+    phone: $("phone").value.trim(),
+    link: $("link").value.trim(),
+    steps: $("steps").value.trim(),
+    notes: $("notes").value.trim()
+  };
 
-      entries.forEach(entry => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${entry.company || ""}</td>
-          <td>${entry.role || ""}</td>
-          <td>${entry.date || ""}</td>
-          <td>
-            <strong>${entry.contact || ""}</strong><br>
-            ${entry.email || ""}<br>
-            ${entry.phone || ""}
-          </td>
-          <td><span class="status ${statusClass(entry.status)}">${entry.status || ""}</span></td>
-          <td>${entry.link ? `<a href="${entry.link}" target="_blank">Voir</a>` : ""}</td>
-          <td>
-            <strong>Étapes :</strong> ${entry.steps || ""}<br>
-            <strong>Notes :</strong> ${entry.notes || ""}
-          </td>
-          <td>
-            <button class="row-btn edit-btn" onclick="editEntry('${entry.id}')">Modifier</button>
-            <button class="row-btn delete-btn" onclick="deleteEntry('${entry.id}')">Supprimer</button>
-          </td>
-        `;
-        body.appendChild(tr);
-      });
-    }
+  if(!entry.company || !entry.role){
+    alert("Entreprise et poste sont obligatoires.");
+    return;
+  }
 
-    function resetForm(){
-      editingId = null;
-      [
-        "f-company","f-role","f-date","f-status","f-contact","f-email",
-        "f-phone","f-link","f-steps","f-notes"
-      ].forEach(id => document.getElementById(id).value = "");
-      document.getElementById("f-status").value = "Ouvert";
-    }
+  const list = entries();
+  const index = list.findIndex(item => item.id === entry.id);
 
-    function saveEntry(){
-      const entry = {
-        id: editingId || crypto.randomUUID(),
-        company: document.getElementById("f-company").value.trim(),
-        role: document.getElementById("f-role").value.trim(),
-        date: document.getElementById("f-date").value,
-        status: document.getElementById("f-status").value,
-        contact: document.getElementById("f-contact").value.trim(),
-        email: document.getElementById("f-email").value.trim(),
-        phone: document.getElementById("f-phone").value.trim(),
-        link: document.getElementById("f-link").value.trim(),
-        steps: document.getElementById("f-steps").value.trim(),
-        notes: document.getElementById("f-notes").value.trim()
-      };
+  if(index >= 0){
+    list[index] = entry;
+  }else{
+    list.unshift(entry);
+  }
 
-      if(!entry.company || !entry.role){
-        alert("Entreprise et poste sont obligatoires.");
-        return;
-      }
+  setEntries(list);
+  render();
+  resetForm();
+}
 
-      const entries = getEntries();
-      const index = entries.findIndex(e => e.id === entry.id);
+function editEntry(id){
+  const entry = entries().find(item => item.id === id);
+  if(!entry) return;
 
-      if(index >= 0){
-        entries[index] = entry;
-      } else {
-        entries.unshift(entry);
-      }
+  editing = id;
+  $("company").value = entry.company || "";
+  $("role").value = entry.role || "";
+  $("date").value = entry.date || "";
+  $("status").value = entry.status || "Ouvert";
+  $("contactName").value = entry.contact || "";
+  $("contactEmail").value = entry.email || "";
+  $("phone").value = entry.phone || "";
+  $("link").value = entry.link || "";
+  $("steps").value = entry.steps || "";
+  $("notes").value = entry.notes || "";
 
-      setEntries(entries);
-      renderTracker();
-      resetForm();
-    }
+  showPage("tracker");
+}
 
-    function editEntry(id){
-      const entry = getEntries().find(e => e.id === id);
-      if(!entry) return;
+function deleteEntry(id){
+  setEntries(entries().filter(entry => entry.id !== id));
+  render();
+}
 
-      editingId = id;
-      document.getElementById("f-company").value = entry.company || "";
-      document.getElementById("f-role").value = entry.role || "";
-      document.getElementById("f-date").value = entry.date || "";
-      document.getElementById("f-status").value = entry.status || "Ouvert";
-      document.getElementById("f-contact").value = entry.contact || "";
-      document.getElementById("f-email").value = entry.email || "";
-      document.getElementById("f-phone").value = entry.phone || "";
-      document.getElementById("f-link").value = entry.link || "";
-      document.getElementById("f-steps").value = entry.steps || "";
-      document.getElementById("f-notes").value = entry.notes || "";
-      showPage("tracker");
-      window.scrollTo({top: 0, behavior: "smooth"});
-    }
+function exportCSV(){
+  const list = entries();
 
-    function deleteEntry(id){
-      const entries = getEntries().filter(e => e.id !== id);
-      setEntries(entries);
-      renderTracker();
-    }
+  if(!list.length){
+    alert("Aucune donnée à exporter.");
+    return;
+  }
 
-    function exportCSV(){
-      const entries = getEntries();
-      if(!entries.length){
-        alert("Aucune donnée à exporter.");
-        return;
-      }
+  const headers = [
+    "Entreprise",
+    "Poste",
+    "Date",
+    "Statut",
+    "Contact",
+    "Email",
+    "Téléphone",
+    "Lien",
+    "Étapes",
+    "Notes"
+  ];
 
-      const headers = ["Entreprise","Poste","Date","Statut","Contact","Email","Téléphone","Lien","Étapes","Notes"];
-      const rows = entries.map(e => [
-        e.company, e.role, e.date, e.status, e.contact, e.email, e.phone, e.link, e.steps, e.notes
-      ]);
+  const rows = list.map(entry => [
+    entry.company,
+    entry.role,
+    entry.date,
+    entry.status,
+    entry.contact,
+    entry.email,
+    entry.phone,
+    entry.link,
+    entry.steps,
+    entry.notes
+  ]);
 
-      const csv = [headers, ...rows]
-        .map(row => row.map(value => `"${String(value || "").replace(/"/g, '""')}"`).join(","))
-        .join("\\n");
+  const csv = [headers, ...rows]
+    .map(row => row.map(value =>
+      `"${String(value || "").replace(/"/g, '""')}"`
+    ).join(","))
+    .join("\\n");
 
-      const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "suivi-candidatures-yann-ouahnoun.csv";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(
+    new Blob([csv], {type:"text/csv;charset=utf-8"})
+  );
+  link.download = "suivi-candidatures.csv";
+  link.click();
+}
 
-    function unlockTracker(){
-      const value = document.getElementById("tracker-password").value;
-      if(value === TRACKER_PASSWORD){
-        document.getElementById("tracker-lock").style.display = "none";
-        document.getElementById("tracker-app").style.display = "block";
-        if(getEntries().length === 0){
-          setEntries([
-            {
-              id: crypto.randomUUID(),
-              company: "Genetec",
-              role: "IT Technician N2",
-              date: "2026-06-20",
-              status: "Ouvert",
-              contact: "Pierre Lalonde",
-              email: "",
-              phone: "",
-              link: "",
-              steps: "CV envoyé",
-              notes: "Entretien RH à planifier"
-            },
-            {
-              id: crypto.randomUUID(),
-              company: "Cogir Immobilier",
-              role: "Support Technique",
-              date: "2026-06-15",
-              status: "Relance à faire",
-              contact: "Anne Bérard",
-              email: "",
-              phone: "",
-              link: "",
-              steps: "Candidature soumise",
-              notes: "Faire un suivi cette semaine"
-            }
-          ]);
-        }
-        renderTracker();
-      } else {
-        alert("Mot de passe incorrect.");
-      }
-    }
+function unlock(){
+  if($("password").value === PASSWORD){
+    $("lock").style.display = "none";
+    $("trackerApp").style.display = "block";
+    render();
+  }else{
+    alert("Mot de passe incorrect.");
+  }
+}
 
-    setLanguage("fr");
-  </script>
+setLang("fr");
+</script>
 </body>
 </html>
