@@ -70,9 +70,13 @@
     .pill-switch button.active{background:#fff;color:var(--teal)}
     .ghost-btn, .solid-btn{
       border:none; cursor:pointer; padding:10px 14px; border-radius:12px; font-weight:600;
+      display:inline-flex; align-items:center; justify-content:center; text-align:center;
+      transition: all 0.2s ease;
     }
     .ghost-btn{background:rgba(255,255,255,.08); color:#fff}
+    .ghost-btn:hover{background:rgba(255,255,255,.16)}
     .solid-btn{background:#fff; color:var(--teal)}
+    .solid-btn:hover{background:#f4ede3; transform:translateY(-1px)}
 
     .hero{
       background:
@@ -107,7 +111,7 @@
       border:1px solid rgba(255,255,255,.16);
       font-size:14px; font-weight:600;
     }
-    .cta-row{display:flex; flex-wrap:wrap; gap:12px}
+    .cta-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
 
     .stats{
       max-width:1200px; margin:-24px auto 24px; padding:0 20px;
@@ -364,6 +368,8 @@
       <div class="cta-row">
         <a class="solid-btn" id="cv-fr-link" href="./Yann%20Ouahnoun%20CV%202026%20-%20Technicien%20Informatique%20v7.pdf" target="_blank">Télécharger CV FR</a>
         <a class="solid-btn" id="cv-en-link" href="./Yann%20Ouahnoun%20-%20English%20Resume%202026%20-%20IT%20Technician_v5.pdf" target="_blank">Download CV EN</a>
+        <a class="solid-btn" id="cv-chiffre-fr-link" href="./Yann-Ouahnoun-CV-FR-Technicien-TI-2026-v2.pdf" target="_blank">Télécharger CV chiffré FR</a>
+        <a class="solid-btn" id="cv-chiffre-en-link" href="./Yann-Ouahnoun-English-Resume-IT-Technician-2026-v2.pdf" target="_blank">Download CV chiffré EN</a>
         <a class="ghost-btn" href="#contact-card" id="contact-cta">Me contacter</a>
       </div>
     </div>
@@ -601,6 +607,8 @@
         submitText: "Envoyer le message",
         cvFr: "Télécharger CV FR",
         cvEn: "Download CV EN",
+        cvChiffreFr: "Télécharger CV chiffré FR",
+        cvChiffreEn: "Download CV chiffré EN",
         contactCta: "Me contacter",
         skills: [
           "NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk",
@@ -669,7 +677,7 @@
           "Formation interne chez Harris Computer Systems | 2015",
           "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
           "BTS Commerce International | École O.R.T., 1996",
-          "Baccalauréat Français en Gestion Informatique | École O.R.T., 1994"
+          "Baccalauréat Français en Gestion Informatique | École O.R.T., Casablanca, 1994"
         ]
       },
       en: {
@@ -702,6 +710,8 @@
         submitText: "Send message",
         cvFr: "Download CV FR",
         cvEn: "Download CV EN",
+        cvChiffreFr: "Download CV FR with Quantified Achievements",
+        cvChiffreEn: "Download CV EN with Quantified Achievements",
         contactCta: "Contact me",
         skills: [
           "NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk",
@@ -852,6 +862,8 @@
 
       document.getElementById("cv-fr-link").textContent = d.cvFr;
       document.getElementById("cv-en-link").textContent = d.cvEn;
+      document.getElementById("cv-chiffre-fr-link").textContent = d.cvChiffreFr;
+      document.getElementById("cv-chiffre-en-link").textContent = d.cvChiffreEn;
       document.getElementById("contact-cta").textContent = d.contactCta;
 
       document.getElementById("skills-tags").innerHTML = renderTags(d.skills);
