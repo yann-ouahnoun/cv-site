@@ -57,8 +57,6 @@ button,input,textarea,select{font:inherit}
 h2{font-family:Georgia,serif;color:var(--teal);margin:0;font-size:28px}
 .card-body{padding:22px}
 .lead{color:var(--muted);font-size:15px;line-height:1.8;margin:0}
-.development-list{color:var(--muted);margin:14px 0 0;padding-left:20px}
-.development-list li{margin:7px 0}
 .achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .achievement{padding:15px;border:1px solid var(--line);border-radius:12px;background:#fbf8f3}
 .achievement strong{display:block;color:var(--teal);font-family:Georgia,serif;font-size:28px}
@@ -228,17 +226,6 @@ th{color:var(--teal);background:#f4fbfb;text-transform:uppercase;font-size:11px}
         </div>
       </section>
 
-      <section class="card" id="development">
-        <div class="card-head">
-          <div class="icon">📈</div>
-          <h2 id="developmentTitle"></h2>
-        </div>
-        <div class="card-body">
-          <p class="lead" id="developmentIntro"></p>
-          <ul class="development-list" id="developmentList"></ul>
-        </div>
-      </section>
-
       <section class="card">
         <div class="card-head">
           <div class="icon">⭐</div>
@@ -390,7 +377,7 @@ th{color:var(--teal);background:#f4fbfb;text-transform:uppercase;font-size:11px}
 
 <script>
 const PASSWORD="JobSearch!26";
-const KEY="yann_job_tracker_v4";
+const KEY="yann_job_tracker_v5";
 let editing=null;
 
 const data={
@@ -404,14 +391,6 @@ skillsTitle:"Compétences clés",
 langTitle:"Langues",
 profileTitle:"Profil professionnel",
 profile:"Technicien informatique avec plus de 14 ans d'expérience en support technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS. Expert en diagnostic et résolution de pannes, gestion des accès via Active Directory et ADManager Plus, et traitement de tickets dans ServiceNow et Freshdesk. Reconnu pour ma capacité à vulgariser les solutions techniques, former les utilisateurs et maintenir un haut niveau de satisfaction client. Bilingue français/anglais, axé sur la rigueur, la communication et la résolution rapide des incidents.",
-developmentTitle:"Développement Professionnel et Transition Professionnelle en TI",
-developmentIntro:"Depuis 2025, je mène une démarche structurée de transition professionnelle vers des occasions en soutien informatique de niveau 2 et de technicien informatique. Cette période m'a permis d'évaluer et de réorienter mes projets et mes perspectives de carrière, tout en maintenant un perfectionnement ciblé.",
-developmentList:[
-"Mise à jour du CV technique, du profil LinkedIn et de la stratégie de recherche d'emploi dans le cadre d'ateliers de développement professionnel.",
-"Approfondissement des connaissances relatives aux pratiques actuelles de soutien informatique, aux technologies émergentes et aux outils de productivité assistés par l'IA.",
-"Perfectionnement continu dans les environnements Windows, Microsoft 365, Active Directory, le soutien des postes de travail, les bases des réseaux informatiques et le service à la clientèle.",
-"Préparation de candidatures ciblées et d'outils d'entrevue pour des postes bilingues en soutien informatique dans la région de Montréal."
-],
 achievementsTitle:"Réalisations clés",
 experienceTitle:"Expériences professionnelles",
 educationTitle:"Formations",
@@ -425,6 +404,7 @@ tags:["NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk","
 langs:["Français : langue maternelle","Anglais : expert (écrit et parlé)","Espagnol : expert (écrit et parlé)","Arabe : parlé"],
 a:[[">85%","Taux de résolution au premier contact via NinjaOne"],["~40%","Réduction des délais de provisioning via ADManager Plus"],["500+","Postes Windows déployés via MDT"],["600+","Tickets annuels résolus dans ServiceNow ITSM et Freshdesk"],["300+","Utilisateurs formés et 25+ procédures rédigées"],["98%","Taux de réussite sur 60 stations via SCCM"]],
 jobs:[
+{c:"DÉVELOPPEMENT PROFESSIONNEL ET TRANSITION PROFESSIONNELLE EN TI",r:"Transition professionnelle et développement professionnel",p:"2025 – Présent",b:["Cette période de transition m'a permis d'évaluer et de réorienter mes projets et mes perspectives de carrière.","Démarche structurée de transition de carrière vers des opportunités de soutien informatique de niveau 2 et de technicien informatique.","Mise à jour du CV technique, du profil LinkedIn et de la stratégie de recherche d'emploi dans le cadre d'ateliers de développement professionnel.","Approfondissement des connaissances relatives aux pratiques actuelles de soutien informatique, aux technologies émergentes et aux outils de productivité assistés par l'IA.","Perfectionnement continu dans les environnements Windows, Microsoft 365, Active Directory, le soutien des postes de travail, les bases des réseaux informatiques et le service à la clientèle.","Préparation de candidatures ciblées et d'outils d'entrevue pour des postes bilingues en soutien informatique dans la région de Montréal."]},
 {c:"Institut Lady Davis – Hôpital Général Juif",r:"Technicien Informatique",p:"2018 – 2025 · Montréal, QC",b:["Support technique N1/N2 aux utilisateurs Windows et macOS, résolution à distance via NinjaOne.","Gestion des comptes utilisateurs, groupes, licences Microsoft 365 et MFA via ADManager Plus.","Déploiement Windows via MDT et gestion des terminaux macOS/iOS via Addigy.","Suivi et résolution des billets ServiceNow ITSM et Freshdesk.","Sécurisation des partages réseau et surveillance de base des serveurs.","Documentation technique et formation des utilisateurs.","Soutien audiovisuel et salles de conférence."]},
 {c:"ISR Transit",r:"Chef d'Équipe Support Clientèle",p:"2017 – 2018 · Montréal, QC",b:["Gestion de l'équipe de soutien et coordination des interventions terrain.","Supervision des déploiements et mises à jour logicielles."]},
 {c:"Dell Canada – Bombardier",r:"Technicien de Terrain",p:"2015 – 2016 · Dorval, QC",b:["Déploiement de postes et logiciels via SCCM."]},
@@ -442,14 +422,6 @@ skillsTitle:"Key skills",
 langTitle:"Languages",
 profileTitle:"Professional profile",
 profile:"IT Technician with over 14 years of experience providing end-user technical support in Windows and macOS environments. Expert in incident resolution, user account and access management via Active Directory and ADManager Plus, and ticket tracking through ServiceNow and Freshdesk. Known for the ability to explain technical solutions to non-technical users, train end users, and maintain a high level of client satisfaction. Fully bilingual in French and English, with a strong focus on rigor, communication, and efficient incident resolution.",
-developmentTitle:"Career Development & IT Professional Transition",
-developmentIntro:"Since 2025, I have been pursuing a structured professional transition toward Level 2 IT Support and IT Technician opportunities. This period has allowed me to assess and refocus my career plans and future while maintaining targeted professional development.",
-developmentList:[
-"Updated my technical resume, LinkedIn profile, and job-search strategy through career-development workshops.",
-"Strengthened my knowledge of current IT support practices, emerging technologies, and AI-assisted productivity tools.",
-"Continued professional development in Windows, Microsoft 365, Active Directory, endpoint support, networking fundamentals, and customer service.",
-"Prepared targeted applications and interview materials for bilingual IT support roles in the Montreal area."
-],
 achievementsTitle:"Key achievements",
 experienceTitle:"Professional experience",
 educationTitle:"Education",
@@ -463,6 +435,7 @@ tags:["NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk","
 langs:["French: Native language","English: Expert (written and spoken)","Spanish: Expert (written and spoken)","Arabic: Spoken"],
 a:[[">85%","First-contact resolution rate via NinjaOne"],["~40%","Provisioning turnaround reduction via ADManager Plus"],["500+","Windows workstations deployed via MDT"],["600+","Annual tickets resolved in ServiceNow ITSM and Freshdesk"],["300+","Users trained and 25+ procedures authored"],["98%","Success rate across 60 stations via SCCM"]],
 jobs:[
+{c:"CAREER DEVELOPMENT & IT PROFESSIONAL TRANSITION",r:"Professional transition and career development",p:"2025 – Now",b:["This period of transition has allowed me to assess and refocus my career plans and future.","Focused on a structured career transition toward Level 2 IT Support and IT Technician opportunities.","Updated my technical resume, LinkedIn profile, and job-search strategy through career-development workshops.","Strengthened my knowledge of current IT support practices, emerging technologies, and AI-assisted productivity tools.","Continued professional development in Windows, Microsoft 365, Active Directory, endpoint support, networking fundamentals, and customer service.","Prepared targeted applications and interview materials for bilingual IT support roles in the Montreal area."]},
 {c:"Institut Lady Davis – Jewish General Hospital",r:"IT Technician",p:"2018 – 2025 · Montreal, QC",b:["Provided Level 1 and 2 support to Windows and macOS users via NinjaOne.","Managed user accounts, groups, Microsoft 365 licenses and MFA via ADManager Plus.","Deployed Windows workstations via MDT and managed macOS/iOS endpoints via Addigy.","Tracked and resolved tickets in ServiceNow ITSM and Freshdesk.","Secured network shares and performed basic server monitoring.","Wrote technical documentation and trained end users.","Supported AV equipment and conference rooms."]},
 {c:"ISR Transit",r:"Customer Support Team Lead",p:"2017 – 2018 · Montreal, QC",b:["Managed the support team and coordinated field interventions.","Supervised software deployment and updates."]},
 {c:"Dell Canada – Bombardier",r:"Field Technician",p:"2015 – 2016 · Dorval, QC",b:["Deployed workstations and software via SCCM."]},
@@ -496,10 +469,6 @@ function setLang(lang){
 
   $("profileTitle").textContent=d.profileTitle;
   $("profileText").textContent=d.profile;
-
-  $("developmentTitle").textContent=d.developmentTitle;
-  $("developmentIntro").textContent=d.developmentIntro;
-  $("developmentList").innerHTML=d.developmentList.map(x=>`<li>${x}</li>`).join("");
 
   $("achievementsTitle").textContent=d.achievementsTitle;
   $("achievements").innerHTML=d.a.map(x=>`<div class="achievement"><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join("");
