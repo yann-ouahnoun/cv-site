@@ -57,6 +57,8 @@ button,input,textarea,select{font:inherit}
 h2{font-family:Georgia,serif;color:var(--teal);margin:0;font-size:28px}
 .card-body{padding:22px}
 .lead{color:var(--muted);font-size:15px;line-height:1.8;margin:0}
+.development-list{color:var(--muted);margin:14px 0 0;padding-left:20px}
+.development-list li{margin:7px 0}
 .achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .achievement{padding:15px;border:1px solid var(--line);border-radius:12px;background:#fbf8f3}
 .achievement strong{display:block;color:var(--teal);font-family:Georgia,serif;font-size:28px}
@@ -226,6 +228,17 @@ th{color:var(--teal);background:#f4fbfb;text-transform:uppercase;font-size:11px}
         </div>
       </section>
 
+      <section class="card" id="development">
+        <div class="card-head">
+          <div class="icon">📈</div>
+          <h2 id="developmentTitle"></h2>
+        </div>
+        <div class="card-body">
+          <p class="lead" id="developmentIntro"></p>
+          <ul class="development-list" id="developmentList"></ul>
+        </div>
+      </section>
+
       <section class="card">
         <div class="card-head">
           <div class="icon">⭐</div>
@@ -376,338 +389,190 @@ th{color:var(--teal);background:#f4fbfb;text-transform:uppercase;font-size:11px}
 </footer>
 
 <script>
-const PASSWORD = "JobSearch!26";
-const KEY = "yann_job_tracker_v2";
-let editing = null;
+const PASSWORD="JobSearch!26";
+const KEY="yann_job_tracker_v4";
+let editing=null;
 
-const data = {
-  fr: {
-    hero: "Technicien informatique avec plus de 14 ans d'expérience en soutien technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS, gestion des accès, déploiement de postes et résolution rapide des incidents.",
-    chip1: "14+ ans d'expérience",
-    chip2: "Bilingue FR/EN",
-    s: [
-      "Années d'expérience",
-      "Utilisateurs supportés",
-      "Résolution 1er contact",
-      "Postes déployés",
-      "Tickets par an",
-      "Utilisateurs formés"
-    ],
-    role: "Technicien informatique",
-    skillsTitle: "Compétences clés",
-    langTitle: "Langues",
-    profileTitle: "Profil professionnel",
-    profile: "Technicien informatique avec plus de 14 ans d'expérience en support technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS. Expert en diagnostic et résolution de pannes, gestion des accès via Active Directory et ADManager Plus, et traitement de tickets dans ServiceNow et Freshdesk. Reconnu pour ma capacité à vulgariser les solutions techniques, former les utilisateurs et maintenir un haut niveau de satisfaction client. Bilingue français/anglais, axé sur la rigueur, la communication et la résolution rapide des incidents.",
-    achievementsTitle: "Réalisations clés",
-    experienceTitle: "Expériences professionnelles",
-    educationTitle: "Formations",
-    contactTitle: "Recruteurs — Contact",
-    contactIntro: "Utilisez ce formulaire pour me contacter au sujet d'une opportunité ou d'un poste.",
-    labels: [
-      "Votre nom",
-      "Email professionnel",
-      "Entreprise",
-      "Poste proposé",
-      "Message"
-    ],
-    submit: "Envoyer le message",
-    cvFr: "Télécharger CV FR",
-    cvEn: "Download CV EN",
-    tags: [
-      "NinjaOne",
-      "ADManager Plus",
-      "MDT",
-      "Addigy",
-      "ServiceNow ITSM",
-      "Freshdesk",
-      "Microsoft 365",
-      "Active Directory",
-      "Windows",
-      "macOS",
-      "VMware",
-      "Hyper-V",
-      "Cisco"
-    ],
-    langs: [
-      "Français : langue maternelle",
-      "Anglais : expert (écrit et parlé)",
-      "Espagnol : expert (écrit et parlé)",
-      "Arabe : parlé"
-    ],
-    a: [
-      [">85%", "Taux de résolution au premier contact via NinjaOne"],
-      ["~40%", "Réduction des délais de provisioning via ADManager Plus"],
-      ["500+", "Postes Windows déployés via MDT"],
-      ["600+", "Tickets annuels résolus dans ServiceNow ITSM et Freshdesk"],
-      ["300+", "Utilisateurs formés et 25+ procédures rédigées"],
-      ["98%", "Taux de réussite sur 60 stations via SCCM"]
-    ],
-    jobs: [
-      {
-        c: "Institut Lady Davis – Hôpital Général Juif",
-        r: "Technicien Informatique",
-        p: "2018 – 2025 · Montréal, QC",
-        b: [
-          "Support technique N1/N2 aux utilisateurs Windows et macOS, résolution à distance via NinjaOne.",
-          "Gestion des comptes utilisateurs, groupes, licences Microsoft 365 et MFA via ADManager Plus.",
-          "Déploiement Windows via MDT et gestion des terminaux macOS/iOS via Addigy.",
-          "Suivi et résolution des billets ServiceNow ITSM et Freshdesk.",
-          "Sécurisation des partages réseau et surveillance de base des serveurs.",
-          "Documentation technique et formation des utilisateurs.",
-          "Soutien audiovisuel et salles de conférence."
-        ]
-      },
-      {
-        c: "ISR Transit",
-        r: "Chef d'Équipe Support Clientèle",
-        p: "2017 – 2018 · Montréal, QC",
-        b: [
-          "Gestion de l'équipe de soutien et coordination des interventions terrain.",
-          "Supervision des déploiements et mises à jour logicielles."
-        ]
-      },
-      {
-        c: "Dell Canada – Bombardier",
-        r: "Technicien de Terrain",
-        p: "2015 – 2016 · Dorval, QC",
-        b: [
-          "Déploiement de postes et logiciels via SCCM."
-        ]
-      },
-      {
-        c: "NorthStar Harris Computer Systems",
-        r: "Soutien Bureautique & Systèmes",
-        p: "2011 – 2015 · Montréal, QC",
-        b: [
-          "Soutien N2 aux unités d'affaires en Amérique du Nord.",
-          "Gestion des comptes et permissions via Active Directory et SharePoint.",
-          "Migrations Windows, documentation et dépannage.",
-          "Téléphones Cisco, Lync et Skype for Business."
-        ]
-      }
-    ],
-    edu: [
-      "Formation interne chez Harris Computer Systems | 2015",
-      "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
-      "BTS Commerce International | École O.R.T., 1996",
-      "Baccalauréat Français en Gestion Informatique | École O.R.T., 1994"
-    ]
-  },
-
-  en: {
-    hero: "IT Technician with over 14 years of experience in end-user support, specializing in Windows and macOS environments, access management, workstation deployment, and fast incident resolution.",
-    chip1: "14+ years of experience",
-    chip2: "Bilingual FR/EN",
-    s: [
-      "Years of experience",
-      "Users supported",
-      "1st-contact resolution",
-      "Workstations deployed",
-      "Tickets per year",
-      "Users trained"
-    ],
-    role: "IT Technician",
-    skillsTitle: "Key skills",
-    langTitle: "Languages",
-    profileTitle: "Professional profile",
-    profile: "IT Technician with over 14 years of experience providing end-user technical support in Windows and macOS environments. Expert in incident resolution, user account and access management via Active Directory and ADManager Plus, and ticket tracking through ServiceNow and Freshdesk. Known for the ability to explain technical solutions to non-technical users, train end users, and maintain a high level of client satisfaction. Fully bilingual in French and English, with a strong focus on rigor, communication, and efficient incident resolution.",
-    achievementsTitle: "Key achievements",
-    experienceTitle: "Professional experience",
-    educationTitle: "Education",
-    contactTitle: "Recruiters — Contact",
-    contactIntro: "Use this form to contact me regarding a role or opportunity.",
-    labels: [
-      "Your name",
-      "Business email",
-      "Company",
-      "Position offered",
-      "Message"
-    ],
-    submit: "Send message",
-    cvFr: "Download CV FR",
-    cvEn: "Download CV EN",
-    tags: [
-      "NinjaOne",
-      "ADManager Plus",
-      "MDT",
-      "Addigy",
-      "ServiceNow ITSM",
-      "Freshdesk",
-      "Microsoft 365",
-      "Active Directory",
-      "Windows",
-      "macOS",
-      "VMware",
-      "Hyper-V",
-      "Cisco"
-    ],
-    langs: [
-      "French: Native language",
-      "English: Expert (written and spoken)",
-      "Spanish: Expert (written and spoken)",
-      "Arabic: Spoken"
-    ],
-    a: [
-      [">85%", "First-contact resolution rate via NinjaOne"],
-      ["~40%", "Provisioning turnaround reduction via ADManager Plus"],
-      ["500+", "Windows workstations deployed via MDT"],
-      ["600+", "Annual tickets resolved in ServiceNow ITSM and Freshdesk"],
-      ["300+", "Users trained and 25+ procedures authored"],
-      ["98%", "Success rate across 60 stations via SCCM"]
-    ],
-    jobs: [
-      {
-        c: "Institut Lady Davis – Jewish General Hospital",
-        r: "IT Technician",
-        p: "2018 – 2025 · Montreal, QC",
-        b: [
-          "Provided Level 1 and 2 support to Windows and macOS users via NinjaOne.",
-          "Managed user accounts, groups, Microsoft 365 licenses and MFA via ADManager Plus.",
-          "Deployed Windows workstations via MDT and managed macOS/iOS endpoints via Addigy.",
-          "Tracked and resolved tickets in ServiceNow ITSM and Freshdesk.",
-          "Secured network shares and performed basic server monitoring.",
-          "Wrote technical documentation and trained end users.",
-          "Supported AV equipment and conference rooms."
-        ]
-      },
-      {
-        c: "ISR Transit",
-        r: "Customer Support Team Lead",
-        p: "2017 – 2018 · Montreal, QC",
-        b: [
-          "Managed the support team and coordinated field interventions.",
-          "Supervised software deployment and updates."
-        ]
-      },
-      {
-        c: "Dell Canada – Bombardier",
-        r: "Field Technician",
-        p: "2015 – 2016 · Dorval, QC",
-        b: [
-          "Deployed workstations and software via SCCM."
-        ]
-      },
-      {
-        c: "NorthStar Harris Computer Systems",
-        r: "Office Support & Systems",
-        p: "2011 – 2015 · Montreal, QC",
-        b: [
-          "Provided Level 2 support to business units across North America.",
-          "Managed accounts and permissions via Active Directory and SharePoint.",
-          "Performed Windows migrations and troubleshooting.",
-          "Supported Cisco phones, Lync and Skype for Business."
-        ]
-      }
-    ],
-    edu: [
-      "Internal Training at Harris Computer Systems | 2015",
-      "MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004",
-      "BTS International Business | École O.R.T., 1996",
-      "French Baccalaureate in IT Management | École O.R.T., Casablanca, 1994"
-    ]
-  }
+const data={
+fr:{
+hero:"Technicien informatique avec plus de 14 ans d'expérience en soutien technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS, gestion des accès, déploiement de postes et résolution rapide des incidents.",
+chip1:"14+ ans d'expérience",
+chip2:"Bilingue FR/EN",
+s:["Années d'expérience","Utilisateurs supportés","Résolution 1er contact","Postes déployés","Tickets par an","Utilisateurs formés"],
+role:"Technicien informatique",
+skillsTitle:"Compétences clés",
+langTitle:"Langues",
+profileTitle:"Profil professionnel",
+profile:"Technicien informatique avec plus de 14 ans d'expérience en support technique aux utilisateurs finaux, spécialisé en environnements Windows et macOS. Expert en diagnostic et résolution de pannes, gestion des accès via Active Directory et ADManager Plus, et traitement de tickets dans ServiceNow et Freshdesk. Reconnu pour ma capacité à vulgariser les solutions techniques, former les utilisateurs et maintenir un haut niveau de satisfaction client. Bilingue français/anglais, axé sur la rigueur, la communication et la résolution rapide des incidents.",
+developmentTitle:"Développement Professionnel et Transition Professionnelle en TI",
+developmentIntro:"Depuis 2025, je mène une démarche structurée de transition professionnelle vers des occasions en soutien informatique de niveau 2 et de technicien informatique. Cette période m'a permis d'évaluer et de réorienter mes projets et mes perspectives de carrière, tout en maintenant un perfectionnement ciblé.",
+developmentList:[
+"Mise à jour du CV technique, du profil LinkedIn et de la stratégie de recherche d'emploi dans le cadre d'ateliers de développement professionnel.",
+"Approfondissement des connaissances relatives aux pratiques actuelles de soutien informatique, aux technologies émergentes et aux outils de productivité assistés par l'IA.",
+"Perfectionnement continu dans les environnements Windows, Microsoft 365, Active Directory, le soutien des postes de travail, les bases des réseaux informatiques et le service à la clientèle.",
+"Préparation de candidatures ciblées et d'outils d'entrevue pour des postes bilingues en soutien informatique dans la région de Montréal."
+],
+achievementsTitle:"Réalisations clés",
+experienceTitle:"Expériences professionnelles",
+educationTitle:"Formations",
+contactTitle:"Recruteurs — Contact",
+contactIntro:"Utilisez ce formulaire pour me contacter au sujet d'une opportunité ou d'un poste.",
+labels:["Votre nom","Email professionnel","Entreprise","Poste proposé","Message"],
+submit:"Envoyer le message",
+cvFr:"Télécharger CV FR",
+cvEn:"Download CV EN",
+tags:["NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk","Microsoft 365","Active Directory","Windows","macOS","VMware","Hyper-V","Cisco"],
+langs:["Français : langue maternelle","Anglais : expert (écrit et parlé)","Espagnol : expert (écrit et parlé)","Arabe : parlé"],
+a:[[">85%","Taux de résolution au premier contact via NinjaOne"],["~40%","Réduction des délais de provisioning via ADManager Plus"],["500+","Postes Windows déployés via MDT"],["600+","Tickets annuels résolus dans ServiceNow ITSM et Freshdesk"],["300+","Utilisateurs formés et 25+ procédures rédigées"],["98%","Taux de réussite sur 60 stations via SCCM"]],
+jobs:[
+{c:"Institut Lady Davis – Hôpital Général Juif",r:"Technicien Informatique",p:"2018 – 2025 · Montréal, QC",b:["Support technique N1/N2 aux utilisateurs Windows et macOS, résolution à distance via NinjaOne.","Gestion des comptes utilisateurs, groupes, licences Microsoft 365 et MFA via ADManager Plus.","Déploiement Windows via MDT et gestion des terminaux macOS/iOS via Addigy.","Suivi et résolution des billets ServiceNow ITSM et Freshdesk.","Sécurisation des partages réseau et surveillance de base des serveurs.","Documentation technique et formation des utilisateurs.","Soutien audiovisuel et salles de conférence."]},
+{c:"ISR Transit",r:"Chef d'Équipe Support Clientèle",p:"2017 – 2018 · Montréal, QC",b:["Gestion de l'équipe de soutien et coordination des interventions terrain.","Supervision des déploiements et mises à jour logicielles."]},
+{c:"Dell Canada – Bombardier",r:"Technicien de Terrain",p:"2015 – 2016 · Dorval, QC",b:["Déploiement de postes et logiciels via SCCM."]},
+{c:"NorthStar Harris Computer Systems",r:"Soutien Bureautique & Systèmes",p:"2011 – 2015 · Montréal, QC",b:["Soutien N2 aux unités d'affaires en Amérique du Nord.","Gestion des comptes et permissions via Active Directory et SharePoint.","Migrations Windows, documentation et dépannage.","Téléphones Cisco, Lync et Skype for Business."]}
+],
+edu:["Formation interne chez Harris Computer Systems | 2015","MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004","BTS Commerce International | École O.R.T., 1996","Baccalauréat Français en Gestion Informatique | École O.R.T., 1994"]
+},
+en:{
+hero:"IT Technician with over 14 years of experience in end-user support, specializing in Windows and macOS environments, access management, workstation deployment, and fast incident resolution.",
+chip1:"14+ years of experience",
+chip2:"Bilingual FR/EN",
+s:["Years of experience","Users supported","1st-contact resolution","Workstations deployed","Tickets per year","Users trained"],
+role:"IT Technician",
+skillsTitle:"Key skills",
+langTitle:"Languages",
+profileTitle:"Professional profile",
+profile:"IT Technician with over 14 years of experience providing end-user technical support in Windows and macOS environments. Expert in incident resolution, user account and access management via Active Directory and ADManager Plus, and ticket tracking through ServiceNow and Freshdesk. Known for the ability to explain technical solutions to non-technical users, train end users, and maintain a high level of client satisfaction. Fully bilingual in French and English, with a strong focus on rigor, communication, and efficient incident resolution.",
+developmentTitle:"Career Development & IT Professional Transition",
+developmentIntro:"Since 2025, I have been pursuing a structured professional transition toward Level 2 IT Support and IT Technician opportunities. This period has allowed me to assess and refocus my career plans and future while maintaining targeted professional development.",
+developmentList:[
+"Updated my technical resume, LinkedIn profile, and job-search strategy through career-development workshops.",
+"Strengthened my knowledge of current IT support practices, emerging technologies, and AI-assisted productivity tools.",
+"Continued professional development in Windows, Microsoft 365, Active Directory, endpoint support, networking fundamentals, and customer service.",
+"Prepared targeted applications and interview materials for bilingual IT support roles in the Montreal area."
+],
+achievementsTitle:"Key achievements",
+experienceTitle:"Professional experience",
+educationTitle:"Education",
+contactTitle:"Recruiters — Contact",
+contactIntro:"Use this form to contact me regarding a role or opportunity.",
+labels:["Your name","Business email","Company","Position offered","Message"],
+submit:"Send message",
+cvFr:"Download CV FR",
+cvEn:"Download CV EN",
+tags:["NinjaOne","ADManager Plus","MDT","Addigy","ServiceNow ITSM","Freshdesk","Microsoft 365","Active Directory","Windows","macOS","VMware","Hyper-V","Cisco"],
+langs:["French: Native language","English: Expert (written and spoken)","Spanish: Expert (written and spoken)","Arabic: Spoken"],
+a:[[">85%","First-contact resolution rate via NinjaOne"],["~40%","Provisioning turnaround reduction via ADManager Plus"],["500+","Windows workstations deployed via MDT"],["600+","Annual tickets resolved in ServiceNow ITSM and Freshdesk"],["300+","Users trained and 25+ procedures authored"],["98%","Success rate across 60 stations via SCCM"]],
+jobs:[
+{c:"Institut Lady Davis – Jewish General Hospital",r:"IT Technician",p:"2018 – 2025 · Montreal, QC",b:["Provided Level 1 and 2 support to Windows and macOS users via NinjaOne.","Managed user accounts, groups, Microsoft 365 licenses and MFA via ADManager Plus.","Deployed Windows workstations via MDT and managed macOS/iOS endpoints via Addigy.","Tracked and resolved tickets in ServiceNow ITSM and Freshdesk.","Secured network shares and performed basic server monitoring.","Wrote technical documentation and trained end users.","Supported AV equipment and conference rooms."]},
+{c:"ISR Transit",r:"Customer Support Team Lead",p:"2017 – 2018 · Montreal, QC",b:["Managed the support team and coordinated field interventions.","Supervised software deployment and updates."]},
+{c:"Dell Canada – Bombardier",r:"Field Technician",p:"2015 – 2016 · Dorval, QC",b:["Deployed workstations and software via SCCM."]},
+{c:"NorthStar Harris Computer Systems",r:"Office Support & Systems",p:"2011 – 2015 · Montreal, QC",b:["Provided Level 2 support to business units across North America.","Managed accounts and permissions via Active Directory and SharePoint.","Performed Windows migrations and troubleshooting.","Supported Cisco phones, Lync and Skype for Business."]}
+],
+edu:["Internal Training at Harris Computer Systems | 2015","MCP on Windows 2000 Server & Professional - Active Directory | Eurelec, 2003-2004","BTS International Business | École O.R.T., 1996","French Baccalaureate in IT Management | École O.R.T., Casablanca, 1994"]
+}
 };
 
-function $(id){
-  return document.getElementById(id);
-}
+function $(id){return document.getElementById(id)}
 
 function setLang(lang){
-  const d = data[lang];
+  const d=data[lang];
 
-  $("frBtn").classList.toggle("active", lang === "fr");
-  $("enBtn").classList.toggle("active", lang === "en");
+  $("frBtn").classList.toggle("active",lang==="fr");
+  $("enBtn").classList.toggle("active",lang==="en");
 
-  $("heroText").textContent = d.hero;
-  $("chip1").textContent = d.chip1;
-  $("chip2").textContent = d.chip2;
+  $("heroText").textContent=d.hero;
+  $("chip1").textContent=d.chip1;
+  $("chip2").textContent=d.chip2;
 
-  d.s.forEach((text, index) => {
-    $("s" + (index + 1)).textContent = text;
+  d.s.forEach((text,index)=>{
+    $("s"+(index+1)).textContent=text;
   });
 
-  $("sideRole").textContent = d.role;
-  $("skillsTitle").textContent = d.skillsTitle;
-  $("langTitle").textContent = d.langTitle;
-  $("tags").innerHTML = d.tags.map(tag => `<span class="tag">${tag}</span>`).join("");
-  $("langs").innerHTML = d.langs.map(language => `<li>${language}</li>`).join("");
+  $("sideRole").textContent=d.role;
+  $("skillsTitle").textContent=d.skillsTitle;
+  $("langTitle").textContent=d.langTitle;
+  $("tags").innerHTML=d.tags.map(x=>`<span class="tag">${x}</span>`).join("");
+  $("langs").innerHTML=d.langs.map(x=>`<li>${x}</li>`).join("");
 
-  $("profileTitle").textContent = d.profileTitle;
-  $("profileText").textContent = d.profile;
-  $("achievementsTitle").textContent = d.achievementsTitle;
-  $("achievements").innerHTML = d.a.map(item =>
-    `<div class="achievement"><strong>${item[0]}</strong><span>${item[1]}</span></div>`
-  ).join("");
+  $("profileTitle").textContent=d.profileTitle;
+  $("profileText").textContent=d.profile;
 
-  $("experienceTitle").textContent = d.experienceTitle;
-  $("experience").innerHTML = d.jobs.map(job => `
+  $("developmentTitle").textContent=d.developmentTitle;
+  $("developmentIntro").textContent=d.developmentIntro;
+  $("developmentList").innerHTML=d.developmentList.map(x=>`<li>${x}</li>`).join("");
+
+  $("achievementsTitle").textContent=d.achievementsTitle;
+  $("achievements").innerHTML=d.a.map(x=>`<div class="achievement"><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join("");
+
+  $("experienceTitle").textContent=d.experienceTitle;
+  $("experience").innerHTML=d.jobs.map(j=>`
     <div class="job">
       <div class="job-top">
         <div>
-          <div class="company">${job.c}</div>
-          <div class="role">${job.r}</div>
+          <div class="company">${j.c}</div>
+          <div class="role">${j.r}</div>
         </div>
-        <div class="period">${job.p}</div>
+        <div class="period">${j.p}</div>
       </div>
-      <ul>${job.b.map(bullet => `<li>${bullet}</li>`).join("")}</ul>
+      <ul>${j.b.map(x=>`<li>${x}</li>`).join("")}</ul>
     </div>
   `).join("");
 
-  $("educationTitle").textContent = d.educationTitle;
-  $("education").innerHTML = d.edu.map(item => `<li>${item}</li>`).join("");
+  $("educationTitle").textContent=d.educationTitle;
+  $("education").innerHTML=d.edu.map(x=>`<li>${x}</li>`).join("");
 
-  $("contactTitle").textContent = d.contactTitle;
-  $("contactIntro").textContent = d.contactIntro;
+  $("contactTitle").textContent=d.contactTitle;
+  $("contactIntro").textContent=d.contactIntro;
 
   ["nameLabel","emailLabel","companyLabel","positionLabel","messageLabel"]
-    .forEach((id, index) => $(id).textContent = d.labels[index]);
+    .forEach((id,index)=>$(id).textContent=d.labels[index]);
 
-  $("submitText").textContent = d.submit;
-  $("cvFr").textContent = d.cvFr;
-  $("cvEn").textContent = d.cvEn;
+  $("submitText").textContent=d.submit;
+  $("cvFr").textContent=d.cvFr;
+  $("cvEn").textContent=d.cvEn;
 }
 
-$("frBtn").onclick = () => setLang("fr");
-$("enBtn").onclick = () => setLang("en");
+$("frBtn").onclick=()=>setLang("fr");
+$("enBtn").onclick=()=>setLang("en");
 
 function showPage(page){
-  $("cvPage").style.display = page === "cv" ? "block" : "none";
-  $("trackerPage").style.display = page === "tracker" ? "block" : "none";
-  $("cvTab").classList.toggle("active", page === "cv");
-  $("trackerTab").classList.toggle("active", page === "tracker");
-  window.scrollTo({top:0, behavior:"smooth"});
+  $("cvPage").style.display=page==="cv"?"block":"none";
+  $("trackerPage").style.display=page==="tracker"?"block":"none";
+  $("cvTab").classList.toggle("active",page==="cv");
+  $("trackerTab").classList.toggle("active",page==="tracker");
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function entries(){
-  return JSON.parse(localStorage.getItem(KEY) || "[]");
+  return JSON.parse(localStorage.getItem(KEY)||"[]");
 }
 
 function setEntries(value){
-  localStorage.setItem(KEY, JSON.stringify(value));
+  localStorage.setItem(KEY,JSON.stringify(value));
 }
 
 function statusClass(status){
-  if(status === "Relance à faire") return "background:#fff4df;color:#9b5a00";
-  if(status === "Entretien prévu") return "background:#e7f6ec;color:#1d7a3a";
-  if(status === "Refusé") return "background:#fdecec;color:#b32b2b";
-  return "background:#e8f2ff;color:#1b57b8";
+  if(status==="Relance à faire")return"background:#fff4df;color:#9b5a00";
+  if(status==="Entretien prévu")return"background:#e7f6ec;color:#1d7a3a";
+  if(status==="Refusé")return"background:#fdecec;color:#b32b2b";
+  return"background:#e8f2ff;color:#1b57b8";
 }
 
 function render(){
-  const body = $("rows");
-  body.innerHTML = "";
+  const body=$("rows");
+  body.innerHTML="";
 
-  entries().forEach(entry => {
-    const row = document.createElement("tr");
+  entries().forEach(entry=>{
+    const row=document.createElement("tr");
 
-    row.innerHTML = `
-      <td>${entry.company || ""}</td>
-      <td>${entry.role || ""}</td>
-      <td>${entry.date || ""}</td>
-      <td>${entry.contact || ""}<br>${entry.email || ""}<br>${entry.phone || ""}</td>
-      <td><span class="status" style="${statusClass(entry.status)}">${entry.status || ""}</span></td>
-      <td>${entry.link ? `<a href="${entry.link}" target="_blank" rel="noopener">Voir</a>` : ""}</td>
-      <td><b>Étapes :</b> ${entry.steps || ""}<br><b>Notes :</b> ${entry.notes || ""}</td>
+    row.innerHTML=`
+      <td>${entry.company||""}</td>
+      <td>${entry.role||""}</td>
+      <td>${entry.date||""}</td>
+      <td>${entry.contact||""}<br>${entry.email||""}<br>${entry.phone||""}</td>
+      <td><span class="status" style="${statusClass(entry.status)}">${entry.status||""}</span></td>
+      <td>${entry.link?`<a href="${entry.link}" target="_blank" rel="noopener">Voir</a>`:""}</td>
+      <td><b>Étapes:</b> ${entry.steps||""}<br><b>Notes:</b> ${entry.notes||""}</td>
       <td>
         <button class="edit" onclick="editEntry('${entry.id}')">Modifier</button>
         <button class="delete" onclick="deleteEntry('${entry.id}')">Supprimer</button>
@@ -719,133 +584,97 @@ function render(){
 }
 
 function resetForm(){
-  editing = null;
+  editing=null;
 
-  [
-    "company",
-    "role",
-    "date",
-    "contactName",
-    "contactEmail",
-    "phone",
-    "link",
-    "steps",
-    "notes"
-  ].forEach(id => $(id).value = "");
+  ["company","role","date","contactName","contactEmail","phone","link","steps","notes"]
+    .forEach(id=>$(id).value="");
 
-  $("status").value = "Ouvert";
+  $("status").value="Ouvert";
 }
 
 function saveEntry(){
-  const entry = {
-    id: editing || crypto.randomUUID(),
-    company: $("company").value.trim(),
-    role: $("role").value.trim(),
-    date: $("date").value,
-    status: $("status").value,
-    contact: $("contactName").value.trim(),
-    email: $("contactEmail").value.trim(),
-    phone: $("phone").value.trim(),
-    link: $("link").value.trim(),
-    steps: $("steps").value.trim(),
-    notes: $("notes").value.trim()
+  const entry={
+    id:editing||crypto.randomUUID(),
+    company:$("company").value.trim(),
+    role:$("role").value.trim(),
+    date:$("date").value,
+    status:$("status").value,
+    contact:$("contactName").value.trim(),
+    email:$("contactEmail").value.trim(),
+    phone:$("phone").value.trim(),
+    link:$("link").value.trim(),
+    steps:$("steps").value.trim(),
+    notes:$("notes").value.trim()
   };
 
-  if(!entry.company || !entry.role){
+  if(!entry.company||!entry.role){
     alert("Entreprise et poste sont obligatoires.");
     return;
   }
 
-  const list = entries();
-  const index = list.findIndex(item => item.id === entry.id);
+  const all=entries();
+  const index=all.findIndex(x=>x.id===entry.id);
 
-  if(index >= 0){
-    list[index] = entry;
-  }else{
-    list.unshift(entry);
-  }
+  if(index>=0)all[index]=entry;
+  else all.unshift(entry);
 
-  setEntries(list);
+  setEntries(all);
   render();
   resetForm();
 }
 
 function editEntry(id){
-  const entry = entries().find(item => item.id === id);
-  if(!entry) return;
+  const entry=entries().find(x=>x.id===id);
+  if(!entry)return;
 
-  editing = id;
-  $("company").value = entry.company || "";
-  $("role").value = entry.role || "";
-  $("date").value = entry.date || "";
-  $("status").value = entry.status || "Ouvert";
-  $("contactName").value = entry.contact || "";
-  $("contactEmail").value = entry.email || "";
-  $("phone").value = entry.phone || "";
-  $("link").value = entry.link || "";
-  $("steps").value = entry.steps || "";
-  $("notes").value = entry.notes || "";
+  editing=id;
+  $("company").value=entry.company||"";
+  $("role").value=entry.role||"";
+  $("date").value=entry.date||"";
+  $("status").value=entry.status||"Ouvert";
+  $("contactName").value=entry.contact||"";
+  $("contactEmail").value=entry.email||"";
+  $("phone").value=entry.phone||"";
+  $("link").value=entry.link||"";
+  $("steps").value=entry.steps||"";
+  $("notes").value=entry.notes||"";
 
   showPage("tracker");
 }
 
 function deleteEntry(id){
-  setEntries(entries().filter(entry => entry.id !== id));
+  setEntries(entries().filter(e=>e.id!==id));
   render();
 }
 
 function exportCSV(){
-  const list = entries();
+  const all=entries();
 
-  if(!list.length){
+  if(!all.length){
     alert("Aucune donnée à exporter.");
     return;
   }
 
-  const headers = [
-    "Entreprise",
-    "Poste",
-    "Date",
-    "Statut",
-    "Contact",
-    "Email",
-    "Téléphone",
-    "Lien",
-    "Étapes",
-    "Notes"
-  ];
+  const headers=["Entreprise","Poste","Date","Statut","Contact","Email","Téléphone","Lien","Étapes","Notes"];
 
-  const rows = list.map(entry => [
-    entry.company,
-    entry.role,
-    entry.date,
-    entry.status,
-    entry.contact,
-    entry.email,
-    entry.phone,
-    entry.link,
-    entry.steps,
-    entry.notes
+  const rows=all.map(e=>[
+    e.company,e.role,e.date,e.status,e.contact,e.email,e.phone,e.link,e.steps,e.notes
   ]);
 
-  const csv = [headers, ...rows]
-    .map(row => row.map(value =>
-      `"${String(value || "").replace(/"/g, '""')}"`
-    ).join(","))
+  const csv=[headers,...rows]
+    .map(row=>row.map(value=>`"${String(value||"").replace(/"/g,'""')}"`).join(","))
     .join("\\n");
 
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(
-    new Blob([csv], {type:"text/csv;charset=utf-8"})
-  );
-  link.download = "suivi-candidatures.csv";
+  const link=document.createElement("a");
+  link.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  link.download="suivi-candidatures.csv";
   link.click();
 }
 
 function unlock(){
-  if($("password").value === PASSWORD){
-    $("lock").style.display = "none";
-    $("trackerApp").style.display = "block";
+  if($("password").value===PASSWORD){
+    $("lock").style.display="none";
+    $("trackerApp").style.display="block";
     render();
   }else{
     alert("Mot de passe incorrect.");
